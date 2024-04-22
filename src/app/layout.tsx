@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import AntdStyledComponentsRegistry from "@/components/AntdStyledComponentsRegistry";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,9 +23,9 @@ export default function RootLayout({
           <Navbar />
         </div>
         <div className="flex flex-col items-center mt-6">
-          <AntdStyledComponentsRegistry>
-            {children}
-          </AntdStyledComponentsRegistry>
+            <AntdStyledComponentsRegistry>
+              {children}
+            </AntdStyledComponentsRegistry>
         </div>
         <Footer />
       </body>

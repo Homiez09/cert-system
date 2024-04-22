@@ -3,15 +3,16 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { Input } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export const SearchBox = ({ query, category }: { query: string, category: string }) => {
+export const SearchBox = ({ category }: { category: string }) => {
+    const query = useSearchParams().get("query") || "";
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         setSearchTerm(query);
-    }, [query])
+    }, [])
 
     const updateQuery = (e?: ChangeEvent<HTMLInputElement>) => {
         if (e) {
