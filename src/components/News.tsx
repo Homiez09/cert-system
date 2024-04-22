@@ -163,6 +163,7 @@ export const RecommendCyberNews = ({ num }: { num: number }) => {
                     autoplaySpeed={2000}
                     slidesToShow={screenWidth > 1024 ? 3 : 1}
                     slidesToScroll={1}
+                    arrows={false}
                     className="hover:cursor-grab active:cursor-grabbing">
                     {dataHardCodeCyberNews.slice(0, num).map((item: CardDataProps, index: number) => {
                         return (

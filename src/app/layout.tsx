@@ -23,11 +23,9 @@ export default function RootLayout({
           <Navbar />
         </div>
         <div className="flex flex-col items-center mt-6">
-          <Suspense fallback={<div>Loading...</div>}>
             <AntdStyledComponentsRegistry>
               {children}
             </AntdStyledComponentsRegistry>
-          </Suspense>
         </div>
         <Footer />
       </body>
