@@ -94,7 +94,7 @@ export default () => {
         },
         {
             title: "ข่าวสารภัยคุกคามทางไซเบอร์",
-            href: "news/cybernews",
+            href: "/news/cybernews",
         },
         {
             title: "เอกสารเผยแพร่",
@@ -160,14 +160,14 @@ export default () => {
                         })}
                     </ul>
 
-                    <div className={`z-[999] bg-white ${isFixed ? 'fixed top-0 left-0 right-0 shadow-md' : ''} lg:hidden`}>
+                    <div className={`z-[999] bg-white ${isFixed ? 'fixed top-0 left-0 right-0 shadow-md py-3' : ''} lg:hidden`}>
                         <div className="flex flex-row justify-between items-center px-2 w-full">
                             {isDropdownOpen ? (
                                 <MingcuteCloseFill className="w-7" onClick={toggleDropdown} />
                             ) : (
-                                <IconamoonMenuBurgerHorizontalDuotone className="w-7" onClick={toggleDropdown} />
+                                <IconamoonMenuBurgerHorizontalDuotone className="w-7 h-auto" onClick={toggleDropdown} />
                             )}
-                            <Link href="/news/cybernews"><RiSearchLine className="w-6" onClick={toggleDropdownClose} /></Link>
+                            <Link href="/news/cybernews"><RiSearchLine className="w-6 h-auto" onClick={toggleDropdownClose} /></Link>
                         </div>
                         {isDropdownOpen && ( 
                             <div className="p-5">
