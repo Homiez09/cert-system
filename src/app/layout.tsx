@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { kanit } from "@/libs/font";
+import Navbar from "@/components/Navbar";
+import AntdStyledComponentsRegistry from "@/components/AntdStyledComponentsRegistry";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={kanit.className + ' flex flex-col pt-4'}>
+        <div className="flex">
+          <Navbar />
+        </div>
+        <div className="flex flex-col items-center mt-6">
+          <AntdStyledComponentsRegistry>
+            {children}
+          </AntdStyledComponentsRegistry>
+        </div>
+        <Footer />
+      </body>
     </html>
   );
 }
