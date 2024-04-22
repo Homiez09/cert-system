@@ -5,6 +5,7 @@ import { RiSearchLine } from "@/icons/SearchIcon"
 import { Dropdown, type MenuProps } from 'antd';
 import { kanit } from "@/libs/font";
 import { UiwDown } from "@/icons/DownIcon";
+import { IconamoonMenuBurgerHorizontalDuotone } from "@/icons/HamBurger";
 
 
 export default () => {
@@ -136,18 +137,18 @@ export default () => {
         },
         {
             title: <RiSearchLine className="w-6 h-auto" />,
-            href: "?search=",
+            href: "/news/cybernews?query=",
         }
     ]
     return (
         <>
             <div className="flex flex-col items-center w-full">
                 <div className="flex flex-col px-3 gap-5">
-                    <div className="flex flex-row items-center gap-5">
+                    <div className="relative z-10 flex flex-row items-center gap-5">
                         <Image className="flex" src="/ncert_logo.webp" width={153} height={50} alt="ThaiCERT Logo" />
                         <Link href="/" className="flex">Thailand Computer Emergency Response Team (ThaiCERT)</Link>
                     </div>
-                    <ul className="flex flex-row gap-9 max-lg:hidden">
+                    {/* <ul className="flex flex-row gap-9 ">
                         {menuitems.map((item, index) => {
                             if (item.dropdown) {
                                 const items: MenuProps['items'] = item.dropdown
@@ -165,7 +166,14 @@ export default () => {
                                 )
                             }
                         })}
-                    </ul>
+                    </ul> */}
+
+                    <div className=" sticky z-10 w-full border left-0">
+                        <div className="flex flex-row justify-between items-center px-2 w-full">
+                            <IconamoonMenuBurgerHorizontalDuotone className="w-7" />
+                            <Link href="/news/cybernews"><RiSearchLine className="w-6 h-auto" /></Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
