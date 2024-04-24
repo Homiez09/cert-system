@@ -9,7 +9,7 @@ export default function AntdStyledComponentsRegistry({ children }: { children: R
 
     // innsert cache style on the server
     useServerInsertedHTML(() => (
-        <style id="antd" dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }}></style>
+        <style id="antd" dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }}/>
     ));
 
     return <StyleProvider cache={cache}>{children}</StyleProvider>;

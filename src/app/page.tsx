@@ -1,9 +1,10 @@
-import { RecommendCyberNews } from "@/components/News";
+import { RecommendCyberNews } from "@/components/new/ShowNews";
 import ImageCarousel from "@/components/ImageCarousel";
 import BannerCarouselProps from "@/interfaces/BannerCarouselProps";
 import Link from "next/link";
+import { fetchNews } from "@/libs/requestAPI";
 
-export default function Home() {
+export default async function Home() {
   const banners: BannerCarouselProps[] = [
     {
       src: "/banner01.webp",
@@ -15,6 +16,8 @@ export default function Home() {
       alt: "banner",
     },
   ]
+
+  const getNews = await fetchNews();
   return (
     <>
       <ImageCarousel banners={banners} autoplay />
@@ -23,7 +26,7 @@ export default function Home() {
           <span className="lg:text-3xl text-2xl">ความเคลื่อนไหวภัยคุกคามทางไซเบอร์</span>
           <Link href="/news/cybernews" className="text-lg hover:bg-[#02b371] hover:cursor-pointer p-2 rounded-md">ดูความเคลื่อนไหวทั้งหมด →</Link>
         </div>
-        <RecommendCyberNews num={5} />
+        <RecommendCyberNews />
       </div>
     </>
   );

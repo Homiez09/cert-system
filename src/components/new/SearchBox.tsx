@@ -26,7 +26,7 @@ export const SearchBox = ({ category }: { category: string }) => {
     }
 
     return (
-        <div className="flex justify-center w-full px-2">
+        <div className="flex justify-center w-full h-auto px-2">
             <Input
                 radius="full"
                 className="w-1/2 max-lg:w-full rounded-full border focus-within:shadow-lg"

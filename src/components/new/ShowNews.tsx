@@ -1,0 +1,153 @@
+'use client'
+
+import React, { Suspense, use, useEffect, useState } from "react";
+import Slider from "react-slick";
+import Card, { CardSkeleton } from "./Card";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { CarbonUserAvatarFilled } from "@/icons/Avatar";
+import { RiTimeLine } from "@/icons/Clock";
+import { MaterialSymbolsFolderOutline } from "@/icons/Folder";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { kanit } from "@/libs/font";
+import Pagination from "./Pagination";
+import axios from "axios";
+
+export const AllCyberNews = ({ className }: { className: string }) => {
+    const query = useSearchParams().get("page") || 1;
+
+    const [perPage, setPerPage] = useState<any>();
+
+    useEffect(() => {
+        axios.post('/api/news', { page: query }).then((res) => {
+            setPerPage(res.data);
+        });
+    }, [query])
+
+    return (
+        <>
+            <div className={`w-full grid lg:grid-cols-3 grid-cols-1 ${className}`}>
+                {perPage ? perPage.data.map((item: any, index: number) => {
+                    return (
+                        <Card key={index} data={item} />
+                    );
+                }) : <>
+                    <CardSkeleton />
+                    <CardSkeleton />
+                    <CardSkeleton />
+                    <CardSkeleton />
+                </>}
+            </div>
+            {perPage ? <Pagination pageCount={perPage.meta.pagination.pageCount} /> : <Pagination pageCount={10} />}
+        </>
+    )
+}
+
+export const RecommendCyberNews = () => {
+    const [recommentNews, setRecommentNews] = useState<any>();
+    const [screenWidth, setScreenWidth] = useState(0);
+
+    useEffect(() => {
+        axios.post('/api/news', { recomment: true }).then((res) => {
+            console.log(res.data.data)
+            setRecommentNews(res.data.data);
+        });
+
+    }, []);
+
+    useEffect(() => {
+        setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', () => {
+            setScreenWidth(window.innerWidth);
+        });
+        return () => {
+            window.removeEventListener('resize', () => {
+                setScreenWidth(window.innerWidth);
+            });
+        }
+    }, [screenWidth]);
+    return (
+        <>
+            <div className="w-full lg:px-10 pt-3">
+                {recommentNews ? <Slider
+                    dots
+                    infinite
+                    autoplay
+                    autoplaySpeed={2000}
+                    slidesToShow={screenWidth > 1024 ? 3 : 1}
+                    slidesToScroll={1}
+                    arrows={false}
+                    className="hover:cursor-grab active:cursor-grabbing">
+                    {recommentNews.map((item: any, index: number) => {
+                        return (
+                            <Card key={index} data={item} />
+                        );
+                    })}
+                </Slider> :
+                <div className="flex flex-row w-full">
+                    <CardSkeleton />
+                    <CardSkeleton />
+                    <CardSkeleton />
+                </div>}
+                {/* <Slider
+                    dots
+                    infinite
+                    autoplay
+                    autoplaySpeed={2000}
+                    slidesToShow={screenWidth > 1024 ? 3 : 1}
+                    slidesToScroll={1}
+                    arrows={false}
+                    className="hover:cursor-grab active:cursor-grabbing">
+                    {recommentNews ? recommentNews.map((item: any, index: number) => {
+                        return (
+                            <Card key={index} data={item} />
+                        );
+                    }) :
+                        <>
+                            <CardSkeleton />
+                            <CardSkeleton />
+                        </>}
+                </Slider> */}
+            </div>
+        </>
+    );
+}
+
+export const GetContentById = ({ data }: { data: any }) => {
+    if (data == false) return <div className="h-screen">Not Found</div>;
+    const id = data.id;
+    const title = data.attributes.title;
+    const category = data.attributes.categories.data[0].attributes?.name_en || "";
+    const categoryTH = data.attributes.categories.data[0].attributes.name_th || "";
+    const content = data.attributes.content;
+    const thumbnail = data.attributes.thumbnail.data.attributes.url;
+    const createdAt = data.attributes.createdAt;
+    return (
+        <>
+            <div className="relative w-full lg:h-[180px] h-[90px] bg-black">
+                <div className="flex flex-col h-full items-center justify-center text-white">
+                    <span className="lg:text-2xl text-xl text-center px-2 text-ellipsis">{title}</span>
+                </div>
+                <Image src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + thumbnail} className="object-cover opacity-30" fill={true} alt={title} />
+            </div>
+            <div className="md:w-[680px] w-full px-1">
+                <div className="w-full flex flex-row items-center justify-center p-3 gap-1">
+                    <CarbonUserAvatarFilled className="w-4 h-auto" />
+                    <span className="text-xs text-gray-500">
+                        Admin
+                    </span>
+                    <RiTimeLine className="w-4 h-auto ml-2" />
+                    <span className="text-xs text-gray-500">
+                        {createdAt.slice(0, 10)}
+                    </span>
+                    <MaterialSymbolsFolderOutline className="w-4 h-auto ml-2" />
+                    <span className="text-xs text-gray-500">
+                        {categoryTH}
+                    </span>
+                </div>
+                <div className={`w-full prose ${kanit.className}`} dangerouslySetInnerHTML={{ __html: content }} />
+            </div>
+        </>
+    );
+}
