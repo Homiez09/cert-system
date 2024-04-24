@@ -14,7 +14,7 @@ import { kanit } from "@/libs/font";
 import Pagination from "./Pagination";
 import axios from "axios";
 
-export const AllCyberNews = ({ className }: { className: string }) => {
+export const AllCyberNews = () => {
     const query = useSearchParams().get("page") || 1;
 
     const [perPage, setPerPage] = useState<any>();
@@ -27,7 +27,7 @@ export const AllCyberNews = ({ className }: { className: string }) => {
 
     return (
         <>
-            <div className={`w-full grid lg:grid-cols-3 grid-cols-1 ${className}`}>
+            <div className={`w-full grid lg:grid-cols-3 grid-cols-1 gap-5`}>
                 {perPage ? perPage.data.map((item: any, index: number) => {
                     return (
                         <Card key={index} data={item} />
@@ -85,11 +85,11 @@ export const RecommendCyberNews = () => {
                         );
                     })}
                 </Slider> :
-                <div className="flex flex-row w-full">
-                    <CardSkeleton />
-                    <CardSkeleton />
-                    <CardSkeleton />
-                </div>}
+                    <div className="flex flex-row w-full">
+                        <CardSkeleton />
+                        <CardSkeleton />
+                        <CardSkeleton />
+                    </div>}
                 {/* <Slider
                     dots
                     infinite
