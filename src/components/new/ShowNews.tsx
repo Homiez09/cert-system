@@ -1,57 +1,59 @@
 'use client'
 
-import React, { Suspense, use, useEffect, useState } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Card, { CardSkeleton } from "./Card";
 import Image from "next/image";
+import Pagination from "./Pagination";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Card, { CardSkeleton } from "./Card";
 import { useSearchParams } from "next/navigation";
 import { CarbonUserAvatarFilled } from "@/icons/Avatar";
 import { RiTimeLine } from "@/icons/Clock";
 import { MaterialSymbolsFolderOutline } from "@/icons/Folder";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { kanit } from "@/libs/font";
-import Pagination from "./Pagination";
-import axios from "axios";
+import { IData, RequestApiProps } from "@/interfaces/RequestApiProps";
 
 export const AllCyberNews = () => {
     const query = useSearchParams().get("page") || 1;
 
-    const [perPage, setPerPage] = useState<any>();
+    const [perPage, setPerPage] = useState<RequestApiProps>();
 
     useEffect(() => {
         axios.post('/api/news', { page: query }).then((res) => {
             setPerPage(res.data);
+            console.log(res.data.message)
         });
     }, [query])
 
     return (
         <>
             <div className={`w-full grid lg:grid-cols-3 grid-cols-1 gap-5`}>
-                {perPage ? perPage.data.map((item: any, index: number) => {
+                {perPage ? perPage.data?.map((item: IData, index: number) => {
                     return (
                         <Card key={index} data={item} />
                     );
-                }) : <>
-                    <CardSkeleton />
-                    <CardSkeleton />
-                    <CardSkeleton />
-                    <CardSkeleton />
-                </>}
+                }) :
+                    <>
+                        <CardSkeleton />
+                        <CardSkeleton />
+                        <CardSkeleton />
+                        <CardSkeleton />
+                    </>}
             </div>
-            {perPage ? <Pagination pageCount={perPage.meta.pagination.pageCount} /> : <Pagination pageCount={10} />}
+            {perPage ? <Pagination pageCount={perPage.meta?.pagination.pageCount} /> : <Pagination pageCount={10} />}
         </>
     )
 }
 
 export const RecommendCyberNews = () => {
-    const [recommentNews, setRecommentNews] = useState<any>();
+    const [recommentNews, setRecommentNews] = useState<RequestApiProps>();
     const [screenWidth, setScreenWidth] = useState(0);
 
     useEffect(() => {
         axios.post('/api/news', { recomment: true }).then((res) => {
-            console.log(res.data.data)
-            setRecommentNews(res.data.data);
+            setRecommentNews(res.data);
         });
 
     }, []);
@@ -70,7 +72,7 @@ export const RecommendCyberNews = () => {
     return (
         <>
             <div className="w-full lg:px-10 pt-3">
-                {recommentNews ? <Slider
+                {recommentNews && recommentNews.data != null ? <Slider
                     dots
                     infinite
                     autoplay
@@ -79,7 +81,7 @@ export const RecommendCyberNews = () => {
                     slidesToScroll={1}
                     arrows={false}
                     className="hover:cursor-grab active:cursor-grabbing">
-                    {recommentNews.map((item: any, index: number) => {
+                    {recommentNews.data.map((item: IData, index: number) => {
                         return (
                             <Card key={index} data={item} />
                         );
@@ -89,33 +91,15 @@ export const RecommendCyberNews = () => {
                         <CardSkeleton />
                         <CardSkeleton />
                         <CardSkeleton />
-                    </div>}
-                {/* <Slider
-                    dots
-                    infinite
-                    autoplay
-                    autoplaySpeed={2000}
-                    slidesToShow={screenWidth > 1024 ? 3 : 1}
-                    slidesToScroll={1}
-                    arrows={false}
-                    className="hover:cursor-grab active:cursor-grabbing">
-                    {recommentNews ? recommentNews.map((item: any, index: number) => {
-                        return (
-                            <Card key={index} data={item} />
-                        );
-                    }) :
-                        <>
-                            <CardSkeleton />
-                            <CardSkeleton />
-                        </>}
-                </Slider> */}
+                    </div>
+                }
             </div>
         </>
     );
 }
 
-export const GetContentById = ({ data }: { data: any }) => {
-    if (data == false) return <div className="h-screen">Not Found</div>;
+export const GetContentById = ({ data }: { data: IData }) => {
+    if (data.id == null) return <div className="h-screen">Not Found</div>;
     const id = data.id;
     const title = data.attributes.title;
     const category = data.attributes.categories.data[0].attributes?.name_en || "";

@@ -1,9 +1,10 @@
 'use client';
 
+import { IData } from "@/interfaces/RequestApiProps";
 import Image from "next/image";
 import Link from "next/link";
 
-export default ({ data }: { data: any }) => {
+export default ({ data }: { data: IData }) => {
     const id = data.id;
     const title = data.attributes.title;
     const category = data.attributes.categories.data[0].attributes?.name_en || "";

@@ -37,8 +37,6 @@ export const fetchNewsById = async (id: number) => {
                 Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
             },
         });
-
-
         return response.data.data;
     } catch (error) {
         console.log("error", error);
