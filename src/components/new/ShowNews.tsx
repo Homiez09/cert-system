@@ -129,7 +129,7 @@ export const GetContentById = ({ data }: { data: IData }) => {
                         {categoryTH}
                     </span>
                 </div>
-                <div className={`w-full prose ${kanit.className}`} dangerouslySetInnerHTML={{ __html: content }} />
+                <div id="content" className={`w-full prose`} dangerouslySetInnerHTML={{ __html: content }}/>
             </div>
         </>
     );
