@@ -1,14 +1,16 @@
 import { GetContentById } from "@/components/new/ShowNews";
+import { CarbonUserAvatarFilled } from "@/icons/Avatar";
+import { RiTimeLine } from "@/icons/Clock";
+import { MaterialSymbolsFolderOutline } from "@/icons/Folder";
+import { IData } from "@/interfaces/RequestApiProps";
+import { kanit } from "@/libs/font";
 import { fetchNewsById } from "@/libs/requestAPI";
-import { Suspense } from "react";
 
 export default async function Page({ params }: { params: { id: number } }) {
     const getNewById = await fetchNewsById(params.id);
     return (
         <>
-            <Suspense fallback={<div>Loading...</div>} >
-                <GetContentById data={getNewById} />
-            </Suspense >
+            <GetContentById data={getNewById} />
         </>
     );
 }

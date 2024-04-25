@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import Image from "next/image";
 import Pagination from "./Pagination";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Card, { CardSkeleton } from "./Card";
 import { useSearchParams } from "next/navigation";
 import { CarbonUserAvatarFilled } from "@/icons/Avatar";
@@ -47,16 +47,8 @@ export const AllCyberNews = () => {
     )
 }
 
-export const RecommendCyberNews = () => {
-    const [recommentNews, setRecommentNews] = useState<RequestApiProps>();
+export const RecommendCyberNews = ({ dataList }: { dataList: any }) => {
     const [screenWidth, setScreenWidth] = useState(0);
-
-    useEffect(() => {
-        axios.post('/api/news', { recomment: true }).then((res) => {
-            setRecommentNews(res.data);
-        });
-
-    }, []);
 
     useEffect(() => {
         setScreenWidth(window.innerWidth);
@@ -72,21 +64,23 @@ export const RecommendCyberNews = () => {
     return (
         <>
             <div className="w-full lg:px-10 pt-3">
-                {recommentNews && recommentNews.data != null ? <Slider
-                    dots
-                    infinite
-                    autoplay
-                    autoplaySpeed={2000}
-                    slidesToShow={screenWidth > 1024 ? 3 : 1}
-                    slidesToScroll={1}
-                    arrows={false}
-                    className="hover:cursor-grab active:cursor-grabbing">
-                    {recommentNews.data.map((item: IData, index: number) => {
-                        return (
-                            <Card key={index} data={item} />
-                        );
-                    })}
-                </Slider> :
+                {dataList && dataList.data != null && screenWidth != 0 ?
+                    <Slider
+                        dots
+                        infinite
+                        autoplay
+                        autoplaySpeed={2000}
+                        slidesToShow={screenWidth > 1024 ? 3 : 1}
+                        slidesToScroll={1}
+                        arrows={false}
+                        className="hover:cursor-grab active:cursor-grabbing">
+                        {dataList.data.map((item: IData, index: number) => {
+                            return (
+                                <Card key={index} data={item} />
+                            );
+                        })}
+                    </Slider>
+                    :
                     <div className="flex flex-row w-full">
                         <CardSkeleton />
                         <CardSkeleton />
