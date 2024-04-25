@@ -81,11 +81,16 @@ export const RecommendCyberNews = ({ dataList }: { dataList: any }) => {
                         })}
                     </Slider>
                     :
-                    <div className="flex flex-row w-full">
+                    <>
+                    <div className="flex flex-row w-full max-lg:hidden">
                         <CardSkeleton />
                         <CardSkeleton />
                         <CardSkeleton />
                     </div>
+                    <div className="flex flex-row w-full lg:hidden">
+                        <CardSkeleton />
+                    </div>
+                    </>                
                 }
             </div>
         </>
