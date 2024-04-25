@@ -18,16 +18,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={kanit.className + ' flex flex-col pt-4'}>
-        <div className="flex">
-          <Navbar />
-        </div>
-        <div className="flex flex-col items-center mt-6">
-            <AntdStyledComponentsRegistry>
-              {children}
-            </AntdStyledComponentsRegistry>
-        </div>
-        <Footer />
+      <body className={kanit.className}>
+          <div className="flex flex-col pt-4">
+            <div className="flex">
+              <Navbar />
+            </div>
+            <div className="flex flex-col items-center mt-6">
+              <AntdStyledComponentsRegistry>
+                {children}
+              </AntdStyledComponentsRegistry>
+            </div>
+            <Footer />
+          </div>
       </body>
     </html>
   );
