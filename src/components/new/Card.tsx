@@ -16,7 +16,7 @@ export default ({ data }: { data: IData }) => {
         <div className="px-5 w-full">
             <div className="flex flex-col gap-3 w-full h-[325px] shadow-lg rounded-lg border relative z-[99]">
                 <div className="relative w-full h-52 rounded-t-lg">
-                    <Image loading="lazy" src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + thumbnail} alt="thumbnail" className="object-cover rounded-t-l" fill />
+                    <Image loading="lazy" src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + thumbnail} alt="thumbnail" className="object-cover rounded-t-lg" fill />
                 </div>
                 <div className="flex flex-col p-2 w-full h-[100px]">
                     <Link href={`/news/${category}/${id}`} className="text-lg font-bold hover:text-[#02b371] text-ellipsis">{title}</Link>
