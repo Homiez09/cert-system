@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Input } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import { useRouter, useSearchParams } from "next/navigation";

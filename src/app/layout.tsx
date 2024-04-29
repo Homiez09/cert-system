@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 import AntdStyledComponentsRegistry from "@/components/AntdStyledComponentsRegistry";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",

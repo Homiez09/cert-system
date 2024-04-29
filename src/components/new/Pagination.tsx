@@ -1,6 +1,6 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "@nextui-org/react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default ({ pageCount }: { pageCount: number }) => {
   const [page, setPage] = useState(Number(useSearchParams().get("page")) || 1);
