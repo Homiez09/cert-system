@@ -6,13 +6,12 @@ import Slider from "react-slick";
 import Image from "next/image";
 import Pagination from "./Pagination";
 import axios from "axios";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card, { CardSkeleton } from "./Card";
 import { useSearchParams } from "next/navigation";
 import { CarbonUserAvatarFilled } from "@/icons/Avatar";
 import { RiTimeLine } from "@/icons/Clock";
 import { MaterialSymbolsFolderOutline } from "@/icons/Folder";
-import { kanit } from "@/libs/font";
 import { IData, RequestApiProps } from "@/interfaces/RequestApiProps";
 
 export const AllCyberNews = () => {

@@ -11,7 +11,6 @@ import { IconamoonMenuBurgerHorizontalDuotone } from "@/icons/HamBurger";
 import { useEffect, useState } from "react";
 import { MingcuteCloseFill } from "@/icons/Close";
 
-
 export default () => {
     const [isFixed, setIsFixed] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
