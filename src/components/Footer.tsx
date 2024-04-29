@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default () => {
     return (
-        <div className="w-full bg-[#52bee5] p-8 mt-16">
+        <div className="w-full bg-secondary p-8 mt-16">
             <div className="flex flex-col container">
                 <div className="flex flex-row justify-between">
                     <div className="flex flex-col">

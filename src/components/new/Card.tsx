@@ -19,9 +19,9 @@ export default ({ data }: { data: IData }) => {
                     <Image loading="lazy" src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + thumbnail} alt="thumbnail" className="object-cover rounded-t-lg" fill />
                 </div>
                 <div className="flex flex-col p-2 w-full h-[100px]">
-                    <Link href={`/news/${category}/${id}`} className="text-lg font-bold hover:text-[#02b371] text-ellipsis">{title}</Link>
+                    <Link href={`/news/${category}/${id}`} className="text-lg font-bold hover:text-hover text-ellipsis">{title}</Link>
                     <div className="flex flex-row justify-between items-end">
-                        <Link href={`/news/${category}`} className="text-sm text-[#2f7555] hover:text-[#02b371]">{categoryTH}</Link>
+                        <Link href={`/news/${category}`} className="text-sm text-primary hover:text-hover">{categoryTH}</Link>
                         <span className="text-sm text-gray-500 pt-2">{createdAt.slice(0, 10)}</span>
                     </div>
                 </div>

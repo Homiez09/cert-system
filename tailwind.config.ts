@@ -10,6 +10,13 @@ const config: Config = {
   ],
 
   theme: {
+    extend: {
+      colors: {
+        primary: "#2f7555",
+        secondary: "#52bee5",
+        hover: "#02b371",
+      }
+    },
     container: {
       center: true,
     },
