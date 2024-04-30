@@ -8,24 +8,24 @@ interface IMeta {
 }
 
 export interface IData {
-    id: number,
+    id: number;
     attributes: {
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        publishedAt: string,
+        title: string;
+        createdAt: string;
+        updatedAt: string;
+        publishedAt: string;
         content: string
-        thumbnail: any,
+        thumbnail: any;
         categories: {
             data: [
                 {
-                    id: 1,
+                    id: 1;
                     attributes: {
-                        name_en: string,
-                        name_th: string,
-                        createdAt: string,
-                        updatedAt: string,
-                        publishedAt: string
+                        name_en: string;
+                        name_th: string;
+                        createdAt: string;
+                        updatedAt: string;
+                        publishedAt: string;
                     }
                 }
             ]
@@ -34,13 +34,14 @@ export interface IData {
 }
 
 export interface RequestApiProps {
-    data: IData[] | null,
-    meta: IMeta
-    error?: {
-        status: number,
-        name: string,
-        message: string,
-        details: any
-    
-    }
+    status: number;
+    message: string;
+    data: IData[];
+    meta: IMeta;
+}
+
+export interface RequestApiPropsById {
+    status: number;
+    message: string;
+    data: IData;
 }

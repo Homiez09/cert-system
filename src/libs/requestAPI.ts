@@ -1,4 +1,11 @@
+import { RequestApiProps } from '@/interfaces/RequestApiProps';
+import { message } from 'antd';
 import axios from 'axios';
+
+const errorMessage = {
+    status: 500,
+    message: 'Something went wrong',
+}
 
 export const fetchNews = async () => {
     try {
@@ -8,10 +15,22 @@ export const fetchNews = async () => {
             },
         });
 
-        return response.data.data;
+        if (response.status === 200) {
+            return {
+                status: response.status,
+                message: response.statusText,
+                data: response.data.data,
+                meta: response.data.meta
+            } as RequestApiProps;
+        } else {
+            return {
+                status: response.status,
+                message: response.statusText,
+            }
+        }
     } catch (error) {
         console.log("error", error);
-        return [];
+        return errorMessage;
     }
 }
 
@@ -23,10 +42,22 @@ export const fetchNewsByPage = async (page: number, pageSize?: number) => {
             },
         });
 
-        return response.data;
+        if (response.status === 200) {
+            return {
+                status: response.status,
+                message: response.statusText,
+                data: response.data.data,
+                meta: response.data.meta
+            } as RequestApiProps;
+        } else {
+            return {
+                status: response.status,
+                message: response.statusText,
+            }
+        }
     } catch (error) {
         console.log("error", error);
-        return [];
+        return errorMessage;
     }
 }
 
@@ -37,9 +68,22 @@ export const fetchNewsById = async (id: number) => {
                 Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
             },
         });
-        return response.data.data;
+
+        if (response.status === 200) {
+            return {
+                status: response.status,
+                message: response.statusText,
+                data: response.data.data,
+            }
+        } else {
+            return {
+                status: response.status,
+                message: response.statusText,
+            }
+        }
+
     } catch (error) {
         console.log("error", error);
-        return [];
+        return errorMessage;
     }
 }

@@ -40,7 +40,7 @@ export default ({ banners, autoplay = false }: { banners: BannerCarouselProps[],
                                     src={item.src}
                                     alt={item.alt}
                                     fill={true}
-                                    className="object-cover shadow-black shadow-2xl"
+                                    className="object-cover shadow-black shadow-2xl w-auto h-auto"
                                 />
                             </div>
                         )
