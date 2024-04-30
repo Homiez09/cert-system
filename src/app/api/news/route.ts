@@ -5,7 +5,7 @@ export async function POST(request: Request) {
     const data = await request.json()
 
     try {
-        const allowedOrigin = process.env.NEXT_PUBLIC_UR;
+        const allowedOrigin = process.env.NEXT_PUBLIC_URL;
 
         if (request.headers.get('origin') !== allowedOrigin) {
             throw new Error('Unauthorized');
