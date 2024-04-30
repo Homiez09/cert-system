@@ -11,6 +11,7 @@ export default ({ banners, autoplay = false }: { banners: BannerCarouselProps[],
                     autoplay={autoplay}
                     draggable
                     infinite
+                    dots={false}
                     className="hover:cursor-grab active:cursor-grabbing"
                 >
                     {banners.map((item, index) => {
@@ -40,7 +41,7 @@ export default ({ banners, autoplay = false }: { banners: BannerCarouselProps[],
                                     src={item.src}
                                     alt={item.alt}
                                     fill={true}
-                                    className="object-cover shadow-black shadow-2xl"
+                                    className="object-cover shadow-black shadow-2xl w-auto h-auto"
                                 />
                             </div>
                         )

@@ -2,7 +2,8 @@ import { RecommendCyberNews } from "@/components/new/ShowNews";
 import ImageCarousel from "@/components/ImageCarousel";
 import BannerCarouselProps from "@/interfaces/BannerCarouselProps";
 import Link from "next/link";
-import { fetchNews, fetchNewsByPage } from "@/libs/requestAPI";
+import { fetchNewsByPage } from "@/libs/requestAPI";
+import { RequestApiProps } from "@/interfaces/RequestApiProps";
 
 export default async function Home() {
   const banners: BannerCarouselProps[] = [
@@ -17,7 +18,7 @@ export default async function Home() {
     },
   ]
 
-  const getNews = await fetchNewsByPage(1, 5);
+  const getNews = await fetchNewsByPage(1, 5) as RequestApiProps;
   return (
     <>
       <ImageCarousel banners={banners} autoplay />
