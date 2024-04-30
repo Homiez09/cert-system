@@ -105,7 +105,7 @@ export const GetContentById = ({ res }: { res: RequestApiPropsById }) => {
     const thumbnail: string = res.data.attributes.thumbnail.data.attributes.url;
     const createdAt: string = res.data.attributes.createdAt;
     return (
-        <div id={`${id}`}>
+        <>
             <div className="relative w-full lg:h-[180px] h-[90px] bg-black">
                 <div className="flex flex-col h-full items-center justify-center text-white">
                     <span className="lg:text-2xl text-xl text-center px-2 text-ellipsis">{title}</span>
@@ -129,6 +129,6 @@ export const GetContentById = ({ res }: { res: RequestApiPropsById }) => {
                 </div>
                 <div id="content" className={`w-full prose`} dangerouslySetInnerHTML={{ __html: content }}/>
             </div>
-        </div>
+        </>
     );
 }
