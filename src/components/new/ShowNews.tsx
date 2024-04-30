@@ -38,9 +38,9 @@ export const AllCyberNews = () => {
                             <p>แนะนำ</p>
                             {perPage?.data.map((item: IData, index: number) => {
                                 return (
-                                    <>
+                                    <div key={index}>
                                         {item.attributes.title},
-                                    </>
+                                    </div>
                                 )
                             })}
                         </div>
@@ -94,9 +94,9 @@ export const RecommendCyberNews = ({ dataList }: { dataList: RequestApiProps }) 
                             <p>แนะนำ</p>
                             {dataList.data?.map((item: IData, index: number) => {
                                 return (
-                                    <>
+                                    <div key={index}>
                                         {item.attributes.title},
-                                    </>
+                                    </div>
                                 )
                             })}
                         </div>
