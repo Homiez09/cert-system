@@ -34,6 +34,16 @@ export const AllCyberNews = () => {
                     );
                 }) :
                     <>
+                        <div className="hidden">
+                            <p>แนะนำ</p>
+                            {perPage?.data.map((item: IData, index: number) => {
+                                return (
+                                    <>
+                                        {item.attributes.title},
+                                    </>
+                                )
+                            })}
+                        </div>
                         <CardSkeleton />
                         <CardSkeleton />
                         <CardSkeleton />
@@ -80,15 +90,25 @@ export const RecommendCyberNews = ({ dataList }: { dataList: RequestApiProps }) 
                     </Slider>
                     :
                     <>
-                    <div className="flex flex-row w-full max-lg:hidden">
-                        <CardSkeleton />
-                        <CardSkeleton />
-                        <CardSkeleton />
-                    </div>
-                    <div className="flex flex-row w-full lg:hidden">
-                        <CardSkeleton />
-                    </div>
-                    </>                
+                        <div className="hidden">
+                            <p>แนะนำ</p>
+                            {dataList.data?.map((item: IData, index: number) => {
+                                return (
+                                    <>
+                                        {item.attributes.title},
+                                    </>
+                                )
+                            })}
+                        </div>
+                        <div className="flex flex-row w-full max-lg:hidden">
+                            <CardSkeleton />
+                            <CardSkeleton />
+                            <CardSkeleton />
+                        </div>
+                        <div className="flex flex-row w-full lg:hidden">
+                            <CardSkeleton />
+                        </div>
+                    </>
                 }
             </div>
         </>
@@ -127,7 +147,7 @@ export const GetContentById = ({ res }: { res: RequestApiPropsById }) => {
                         {categoryTH}
                     </span>
                 </div>
-                <div id="content" className={`w-full prose`} dangerouslySetInnerHTML={{ __html: content }}/>
+                <div id="content" className={`w-full prose`} dangerouslySetInnerHTML={{ __html: content }} />
             </div>
         </>
     );
