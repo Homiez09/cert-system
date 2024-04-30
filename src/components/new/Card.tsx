@@ -20,8 +20,8 @@ export default ({ data }: { data: IData }) => {
                         src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + thumbnail}
                         alt={title}
                         fill
-                        priority
-                        className="object-cover rounded-t-lg w-auto h-auto" />
+                        loading="lazy"
+                        className="object-cover rounded-t-lg w-full h-auto" />
                 </div>
                 <div className="flex flex-col p-2 w-full h-[100px]">
                     <Link href={`/news/${category}/${id}`} className="text-lg font-bold hover:text-hover text-ellipsis">{title}</Link>

@@ -37,7 +37,7 @@ export default () => {
     };
 
     const toggleDropdownClose = () => {
-        setIsDropdownOpen(prevState => false);
+        setIsDropdownOpen(false);
     };
 
     const getLabel = (label: string, link: string) => {
@@ -136,8 +136,8 @@ export default () => {
             <div className="flex flex-col items-center w-full">
                 <div className="flex flex-col px-3 gap-5">
                     <div className="flex flex-row items-center gap-5">
-                        <Image className="flex" src="/ncert_logo.webp" width={153} height={50} alt="ThaiCERT Logo" />
-                        <Link href="/" className="flex">Thailand Computer Emergency Response Team (ThaiCERT)</Link>
+                        <Image src="/ncert_logo.webp" width={153} height={50} alt="ThaiCERT Logo" />
+                        <Link href="/">Thailand Computer Emergency Response Team (ThaiCERT)</Link>
                     </div>
                     <ul className="flex flex-row gap-9 max-lg:hidden">
                         {menuitems.map((item, index) => {
@@ -184,7 +184,7 @@ export default () => {
                                             )
                                         } else {
                                             return (
-                                                <Link href={item.href} key={index} className="hover:cursor-pointer">{item.title}</Link>
+                                                <Link href={item.href} key={index} className="hover:cursor-pointer" onClick={toggleDropdownClose}>{item.title}</Link>
                                             )
                                         }
                                     })}
