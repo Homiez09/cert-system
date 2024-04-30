@@ -11,6 +11,7 @@ export default ({ banners, autoplay = false }: { banners: BannerCarouselProps[],
                     autoplay={autoplay}
                     draggable
                     infinite
+                    dots={false}
                     className="hover:cursor-grab active:cursor-grabbing"
                 >
                     {banners.map((item, index) => {
