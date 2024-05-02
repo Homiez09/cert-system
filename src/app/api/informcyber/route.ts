@@ -10,14 +10,16 @@ export async function POST(request: Request) {
         if (request.headers.get('origin') !== allowedOrigin) {
             throw new Error('Unauthorized');
         }
-;
+        
         const response = await uploadInformCyber(data);
+        if (response.status !== 200) {
+            return NextResponse.error();
+        }
         return NextResponse.json({
             ...response
         });
 
     } catch (err) {
-        console.error("Error occurred:", err);
-        return NextResponse.json({ error: "An error occurred while processing your request" }, { status: 500 });
+        return NextResponse.error();
     }
 }

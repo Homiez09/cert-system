@@ -7,6 +7,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { IForm } from '@/interfaces/IForm';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const buddhistLocale: typeof en = {
     ...en,
@@ -38,7 +39,7 @@ export default function Page() {
 
     const checkForm = () => {
         const requiredFields = ['agency', 'contact', 'event', 'cause', 'impact', 'dateAndTime', 'eventType', 'category', 'severity', 'needAssistance']
-        const isCompleteTemp = requiredFields.every(field => form[field as keyof typeof form] !== null);
+        const isCompleteTemp = requiredFields.every(field => form[field as keyof typeof form] !== null && form[field as keyof typeof form] !== "");
 
         setIsComplete(isCompleteTemp);
     }
@@ -68,7 +69,19 @@ export default function Page() {
         const formData = new FormData();
         formData.append('data', JSON.stringify(form));
         formData.append('files.image', form.image);
-        axios.post(`${process.env.NEXT_PUBLIC_URL}/api/informcyber`, formData);
+
+        toast.promise(
+            axios.post(`${process.env.NEXT_PUBLIC_URL}/api/informcyber`, formData).then(res => {
+                if (res.status === 200) {
+                    window.location.reload();
+                }
+            }),
+            {
+                loading: 'Saving...',
+                success: <b>Saved!</b>,
+                error: <b>Could not save.</b>,
+            }
+        );
     }
 
     const handleSelectChange = (key: string, value: string | Date) => {
@@ -184,10 +197,11 @@ export default function Page() {
 
                         <div>
                             <p className="font-bold">รูปภาพ</p>
-                            <Upload     
+                            <Upload
                                 listType="picture"
                                 multiple={false}
                                 onChange={handleChange}
+                                accept="image/png, image/webp, image/jpg, image/jpeg"
                                 beforeUpload={() => false}
                                 maxCount={1}
                             >
