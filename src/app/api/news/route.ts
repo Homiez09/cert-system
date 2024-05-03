@@ -5,8 +5,8 @@ export async function POST(request: Request) {
     const data = await request.json()
 
     try {
-        const allowedOrigin = process.env.NEXT_PUBLIC_UR;
-
+        const allowedOrigin = process.env.NEXT_PUBLIC_URL;
+    
         if (request.headers.get('origin') !== allowedOrigin) {
             throw new Error('Unauthorized');
         }
@@ -25,7 +25,6 @@ export async function POST(request: Request) {
             return NextResponse.json({ ...getNews });
         }
     } catch (err) {
-        console.error("Error occurred:", err);
-        return NextResponse.json({ error: "An error occurred while processing your request" }, { status: 500 });
+        return NextResponse.error();
     }
 }

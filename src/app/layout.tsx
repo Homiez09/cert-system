@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import AntdStyledComponentsRegistry from "@/components/AntdStyledComponentsRegistry";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,17 +19,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={kanit.className}>
-          <div className="flex flex-col pt-4">
-            <div className="flex">
-              <Navbar />
-            </div>
-            <div className="flex flex-col items-center mt-6">
-              <AntdStyledComponentsRegistry>
-                {children}
-              </AntdStyledComponentsRegistry>
-            </div>
-            <Footer />
+        <Toaster />
+        <div className="flex flex-col pt-4">
+          <div className="flex">
+            <Navbar />
           </div>
+          <div className="flex flex-col items-center mt-6">
+            <AntdStyledComponentsRegistry>
+              {children}
+            </AntdStyledComponentsRegistry>
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

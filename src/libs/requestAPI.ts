@@ -1,3 +1,4 @@
+import { IForm } from '@/interfaces/IForm';
 import { RequestApiProps } from '@/interfaces/RequestApiProps';
 import { message } from 'antd';
 import axios from 'axios';
@@ -82,6 +83,31 @@ export const fetchNewsById = async (id: number) => {
             }
         }
 
+    } catch (error) {
+        console.log("error", error);
+        return errorMessage;
+    }
+}
+
+export const uploadInformCyber = async (data : FormData) => {
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/inform-cybers/`, data, {
+            headers: {
+                Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
+            },
+        });
+
+        if (response.status === 200) {
+            return {
+                status: response.status,
+                message: response.statusText,
+            }
+        } else {
+            return {
+                status: response.status,
+                message: response.statusText,
+            }
+        }
     } catch (error) {
         console.log("error", error);
         return errorMessage;

@@ -96,8 +96,8 @@ export default () => {
             href: "/news/cybernews",
         },
         {
-            title: "เอกสารเผยแพร่",
-            href: "/documents",
+            title: "แจ้งเหตุภัยคุกคาม",
+            href: "/informcyber",
         },
         {
             title: "กิจกรรมหน่วยงาน",

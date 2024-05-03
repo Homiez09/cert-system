@@ -12,9 +12,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#2f7555",
+        primary: "#03A96B",
         secondary: "#52bee5",
-        hover: "#02b371",
+        success: "#02BC77",
+        hover: "#02BC77",
       }
     },
     container: {
