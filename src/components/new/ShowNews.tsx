@@ -65,13 +65,15 @@ export const RecommendCyberNews = ({ dataList }: { dataList: RequestApiProps }) 
                 {dataList.status === 200 && dataList.data != null && screenWidth != 0 ?
                     <Slider
                         dots
-                        infinite
+                        infinite={false}
+                        draggable={dataList.data.length > 3}
                         autoplay
                         autoplaySpeed={2000}
                         slidesToShow={screenWidth > 1024 ? 3 : 1}
                         slidesToScroll={1}
                         arrows={false}
-                        className="hover:cursor-grab active:cursor-grabbing">
+                        className="hover:cursor-grab active:cursor-grabbing"
+                    >
                         {dataList.data.map((item: IData, index: number) => {
                             return (
                                 <Card key={index} data={item} />
@@ -80,15 +82,15 @@ export const RecommendCyberNews = ({ dataList }: { dataList: RequestApiProps }) 
                     </Slider>
                     :
                     <>
-                    <div className="flex flex-row w-full max-lg:hidden">
-                        <CardSkeleton />
-                        <CardSkeleton />
-                        <CardSkeleton />
-                    </div>
-                    <div className="flex flex-row w-full lg:hidden">
-                        <CardSkeleton />
-                    </div>
-                    </>                
+                        <div className="flex flex-row w-full max-lg:hidden">
+                            <CardSkeleton />
+                            <CardSkeleton />
+                            <CardSkeleton />
+                        </div>
+                        <div className="flex flex-row w-full lg:hidden">
+                            <CardSkeleton />
+                        </div>
+                    </>
                 }
             </div>
         </>
@@ -127,7 +129,7 @@ export const GetContentById = ({ res }: { res: RequestApiPropsById }) => {
                         {categoryTH}
                     </span>
                 </div>
-                <div id="content" className={`w-full prose`} dangerouslySetInnerHTML={{ __html: content }}/>
+                <div id="content" className={`w-full prose`} dangerouslySetInnerHTML={{ __html: content }} />
             </div>
         </>
     );
