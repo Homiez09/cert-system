@@ -11,7 +11,7 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'kucert.ku.ac.th',
-                pathname: '/uploads/**',
+                pathname: '**',
             },
         ],
     },

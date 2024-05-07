@@ -2,13 +2,18 @@ import { RequestApiProps } from "@/interfaces/RequestApiProps";
 import axios from "axios";
 import { NextResponse } from "next/server";
 
+interface IPayload {
+    id: number;
+}
+
 export async function POST(request: Request) {
     try {
+        const payload = await request.json() as IPayload;
         const allowedOrigin = process.env.NEXT_PUBLIC_URL;
 
         if (request.headers.get('origin') !== allowedOrigin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/contents?populate=*&sort[0]=id:desc`, {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/contents/${payload.id}?populate=*`, {
             headers: {
                 Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
             },
