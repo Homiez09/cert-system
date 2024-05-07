@@ -128,7 +128,7 @@ export default () => {
         },
         {
             title: <RiSearchLine className="w-6 h-auto" />,
-            href: "/news/cybernews?query=",
+            href: "/news/search",
         }
     ]
     return (
@@ -137,7 +137,7 @@ export default () => {
                 <div className="flex flex-col px-3 gap-5">
                     <div className="flex flex-row items-center gap-5">
                         <Image src="/ncert_logo.webp" width={153} height={50} alt="ThaiCERT Logo" />
-                        <Link href="/">Thailand Computer Emergency Response Team (ThaiCERT)</Link>
+                        <Link href="/">KU Computer Emergency Response Team (ThaiCERT)</Link>
                     </div>
                     <ul className="flex flex-row gap-9 max-lg:hidden">
                         {menuitems.map((item, index) => {
@@ -166,7 +166,7 @@ export default () => {
                             ) : (
                                 <IconamoonMenuBurgerHorizontalDuotone className="w-7 h-auto" onClick={toggleDropdown} />
                             )}
-                            <Link href="/news/cybernews"><RiSearchLine className="w-6 h-auto" onClick={toggleDropdownClose} /></Link>
+                            <Link href="/news/search"><RiSearchLine className="w-6 h-auto" onClick={toggleDropdownClose} /></Link>
                         </div>
                         {isDropdownOpen && ( 
                             <div className="p-5">

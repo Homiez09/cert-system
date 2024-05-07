@@ -108,7 +108,7 @@ export default function Page() {
                     <div className="w-full space-y-3">
                         <div>
                             <p className="font-bold">หน่วยงาน*</p>
-                            <Input className="border border-red-500" placeholder='หน่วยงาน' name="agency" onChange={handleChange} required autoFocus />
+                            <Input className="border" placeholder='หน่วยงาน' name="agency" onChange={handleChange} required autoFocus />
                         </div>
 
                         <div><p className="font-bold">ติดต่อกลับ*</p>
