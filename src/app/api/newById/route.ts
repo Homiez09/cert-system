@@ -11,7 +11,7 @@ export async function POST(request: Request) {
         const payload = await request.json() as IPayload;
         const allowedOrigin = process.env.NEXT_PUBLIC_URL;
 
-        // if (request.headers.get('origin') !== allowedOrigin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+        if (request.headers.get('origin') !== allowedOrigin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
         const res = await axios.get(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/contents/${payload.id}?populate=*`, {
             headers: {

@@ -192,11 +192,3 @@ export const GetContentById = ({ id }: { id: Number }) => {
         </>
     );
 }
-
-export const SearchAllCyberNews = ({ query }: { query: string }) => {
-    return (
-        <>
-            {query}
-        </>
-    )
-}
