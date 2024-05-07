@@ -128,7 +128,7 @@ export default () => {
         },
         {
             title: <RiSearchLine className="w-6 h-auto" />,
-            href: "/news/cybernews?query=",
+            href: "/news/search",
         }
     ]
     return (
@@ -166,7 +166,7 @@ export default () => {
                             ) : (
                                 <IconamoonMenuBurgerHorizontalDuotone className="w-7 h-auto" onClick={toggleDropdown} />
                             )}
-                            <Link href="/news/cybernews"><RiSearchLine className="w-6 h-auto" onClick={toggleDropdownClose} /></Link>
+                            <Link href="/news/search"><RiSearchLine className="w-6 h-auto" onClick={toggleDropdownClose} /></Link>
                         </div>
                         {isDropdownOpen && ( 
                             <div className="p-5">
