@@ -137,7 +137,7 @@ export default () => {
                 <div className="flex flex-col px-3 gap-5">
                     <div className="flex flex-row items-center gap-5">
                         <Image src="/ncert_logo.webp" width={153} height={50} alt="ThaiCERT Logo" />
-                        <Link href="/">Thailand Computer Emergency Response Team (ThaiCERT)</Link>
+                        <Link href="/">KU Computer Emergency Response Team (ThaiCERT)</Link>
                     </div>
                     <ul className="flex flex-row gap-9 max-lg:hidden">
                         {menuitems.map((item, index) => {
