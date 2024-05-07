@@ -8,10 +8,12 @@ const nextConfig = {
                 port: '1337',
                 pathname: '/uploads/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'kucert.ku.ac.th',
+                pathname: '/uploads/**',
+            },
         ],
-    },
-    publicRuntimeConfig: {
-        STRAPI_BASE_URL: 'http://localhost:1337',
     },
 };
 
