@@ -30,7 +30,7 @@ export const AllCyberNews = () => {
 
     return (
         <>
-            {isError ? <div className="flex flex-col justify-center items-center w-full lg:px-10 pt-3">Not Found</div> :
+            {isError ? <div className="flex flex-col justify-center items-center w-full lg:px-10 pt-3 h-[60vh]">Not Found</div> :
                 <>
                     <div className={`w-full grid lg:grid-cols-3 grid-cols-1 gap-5`}>
                         {isReady ?
@@ -84,7 +84,7 @@ export const RecommendCyberNews = ({ numItems }: { numItems: Number }) => {
     }, [screenWidth]);
     return (
         <>
-            {isError ? <div className="flex flex-col justify-center items-center w-full lg:px-10 pt-3">Not Found</div> :
+            {isError ? <div className="flex flex-col justify-center items-center w-full h-[40vh] lg:px-10 pt-3">Not Found</div> :
                 <div className="w-full lg:px-10 pt-3">
                     {isReady && screenWidth != 0 ?
                         <Slider
