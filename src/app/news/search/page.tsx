@@ -1,5 +1,6 @@
 'use client'
 
+import Loading from "@/components/Loading";
 import Card2 from "@/components/new/Card2";
 import { SearchBox } from "@/components/new/SearchBox";
 import { IData } from "@/interfaces/RequestApiProps";
@@ -20,7 +21,7 @@ export default function Page() {
 
     return (
         <div className="flex flex-col pt-3 w-full max-lg:px-3 min-h-[60vh]">
-            <Suspense fallback={<div>Loading...</div>} >
+            <Suspense fallback={<Loading />} >
                 <SearchBox setResult={setResult} />
                 <div className="w-full container max-w-5xl mt-5 h-full pt-5">
                     {dataList ? dataList.filter((item: IData) => item.attributes.title.toLowerCase().includes(result.toLowerCase())).map((item: IData, index: number) => {     
