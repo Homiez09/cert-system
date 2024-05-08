@@ -89,12 +89,12 @@ export const RecommendCyberNews = ({ numItems }: { numItems: Number }) => {
                     {isReady && screenWidth != 0 ?
                         <Slider
                             dots
-                            infinite={false}
+                            infinite
                             draggable={dataList!.data.length > 3}
                             autoplay
                             autoplaySpeed={2000}
                             slidesToShow={screenWidth > 1024 ? 3 : 1}
-                            slidesToScroll={1}
+                            slidesToScroll={screenWidth > 1024 ? 2 : 1}
                             arrows={false}
                             className="hover:cursor-grab active:cursor-grabbing"
                         >
