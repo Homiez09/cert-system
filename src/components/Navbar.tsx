@@ -54,16 +54,16 @@ export default () => {
             href: "/",
         },
         {
-            title: "เกี่ยวกับ ThaiCERT",
+            title: "เกี่ยวกับ KU-CERT",
             href: "/about",
             dropdown: [
                 {
                     key: '1',
-                    label: getLabel("เกี่ยวกับ ThaiCERT", "/")
+                    label: getLabel("เกี่ยวกับ KU-CERT", "/")
                 },
                 {
                     key: '2',
-                    label: getLabel("หน้าที่และอำนาจของ ThaiCERT", "/")
+                    label: getLabel("หน้าที่และอำนาจของ KU-CERT", "/")
                 },
                 {
                     key: '3',
@@ -123,7 +123,7 @@ export default () => {
             ]
         },
         {
-            title: "ติดต่อสำนักงาน",
+            title: "ติดต่อเรา",
             href: "/contact",
         },
         {
@@ -136,8 +136,8 @@ export default () => {
             <div className="flex flex-col items-center w-full">
                 <div className="flex flex-col px-3 gap-5">
                     <div className="flex flex-row items-center gap-5">
-                        <Image src="/ncert_logo.webp" width={153} height={50} alt="ThaiCERT Logo" />
-                        <Link href="/">KU Computer Emergency Response Team (ThaiCERT)</Link>
+                        <Image src="/KU-thai-80-borderless.webp" width={80} height={50} alt="KU-CERT Logo" />
+                        <Link href="/">KU Computer Emergency Response Team (KU-CERT)</Link>
                     </div>
                     <ul className="flex flex-row gap-9 max-lg:hidden">
                         {menuitems.map((item, index) => {

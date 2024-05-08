@@ -2,7 +2,6 @@ import { RecommendCyberNews } from "@/components/new/ShowNews";
 import ImageCarousel from "@/components/ImageCarousel";
 import BannerCarouselProps from "@/interfaces/BannerCarouselProps";
 import Link from "next/link";
-import { RequestApiProps } from "@/interfaces/RequestApiProps";
 
 export default async function Home() {
   const banners: BannerCarouselProps[] = [
