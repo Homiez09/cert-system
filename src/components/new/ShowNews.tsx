@@ -89,7 +89,7 @@ export const RecommendCyberNews = ({ numItems }: { numItems: Number }) => {
                     {isReady && screenWidth != 0 ?
                         <Slider
                             dots
-                            infinite={false}
+                            infinite
                             draggable={dataList!.data.length > 3}
                             autoplay
                             autoplaySpeed={2000}
