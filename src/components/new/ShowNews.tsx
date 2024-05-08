@@ -94,7 +94,7 @@ export const RecommendCyberNews = ({ numItems }: { numItems: Number }) => {
                             autoplay
                             autoplaySpeed={2000}
                             slidesToShow={screenWidth > 1024 ? 3 : 1}
-                            slidesToScroll={1}
+                            slidesToScroll={screenWidth > 1024 ? 2 : 1}
                             arrows={false}
                             className="hover:cursor-grab active:cursor-grabbing"
                         >
