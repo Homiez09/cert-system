@@ -33,6 +33,6 @@ export async function POST(request: Request) {
             } as RequestApiProps)
         }
     } catch (err) {
-        return NextResponse.json({ error: "Payload is required" }, { status: 400 })
+        return NextResponse.json({ error: err }, { status: 400 })
     }
 }
