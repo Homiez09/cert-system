@@ -19,6 +19,6 @@ export async function POST(request: Request) {
             message: res.statusText,
         })
     } catch (err) {
-        return NextResponse.json({ error: "Payload is required" }, { status: 400 })
+        return NextResponse.json({ error: err }, { status: 400 })
     }
 }
