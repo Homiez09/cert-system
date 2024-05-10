@@ -8,7 +8,7 @@ export default async function Home() {
     {
       src: "/banner01.webp",
       alt: "banner",
-      text: "Welcome to | ThaiCERT"
+      text: "Welcome to | KU-CERT"
     },
     {
       src: "/banner02.webp",
