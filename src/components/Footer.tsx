@@ -3,8 +3,8 @@ import Link from "next/link";
 export default () => {
     return (
         <div className="flex bg-secondary p-8 mt-16">
-            <div className="flex flex-col container">
-                <div className="flex flex-row justify-between">
+            <div className="container">
+                <div className="flex flex-col space-y-5 md:flex-row justify-between">
                     <div className="flex flex-col">
                         <span className="font-bold">Office of Computer Services, Kasetsart University</span>
                         <span>50 Ngam Wong Wan Rd, Lat Yao Chatuchak Bangkok 10900</span>
@@ -18,7 +18,6 @@ export default () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }
