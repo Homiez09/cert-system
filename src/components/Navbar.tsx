@@ -124,7 +124,7 @@ export default () => {
         },
         {
             title: "ติดต่อเรา",
-            href: "/contact",
+            href: "/contact-us",
         },
         {
             title: <RiSearchLine className="w-6 h-auto" />,
