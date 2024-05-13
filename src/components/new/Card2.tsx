@@ -20,9 +20,43 @@ export default ({ props }: { props?: IData }) => {
 
   }, [query])
 
-  if (props === undefined) return (
-    <div className="w-full pb-5 lg:px-5 border-b select-none hover:scale-[1.02] animate-pulse">
-      <div className="flex flex-row p-2 hover:cursor-pointer">
+  return (
+    <>
+      <div className="w-full pb-5 lg:px-5 border-b select-none hover:scale-[1.02]">
+        <div className="flex flex-row p-2 hover:cursor-pointer" onClick={() => router.push(`/news/cybernews/${props!.id}`)}>
+          <div className="flex flex-col w-2/3">
+            {/* Date */}
+            <small className="text-gray-500">{props!.attributes.createdAt.slice(0, 10)} | {props!.attributes.createdAt.slice(11, 19)}</small>
+            {/* Title */}
+            <div id={`title${props!.id}`} className="text-2xl">{props!.attributes.title}</div>
+          </div>
+          {/* Image */}
+          <div className="flex flex-col items-end w-1/3 p-2">
+            <Image
+              src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + props!.attributes.thumbnail.data.attributes.url}
+              alt="Project"
+              className='rounded-md shadow-md'
+              width="112" height="112"
+            />
+          </div>
+        </div>
+        <div className="px-2">
+          {/* Categorys */}
+          {props!.attributes.categories.data.map((item, index) => {
+            return (
+              <span key={index} className="text-xs text-gray-500">{item.attributes.name_en}</span>
+            )
+          })}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export const CardSkeleton2 = () => {
+  return (
+    <div className="w-full pb-5 lg:px-5 border-b select-none animate-pulse">
+      <div className="flex flex-row p-2">
         <div className="flex flex-col w-2/3 gap-3">
           <div className="w-3/4 h-4 bg-gray-300 rounded" />
           <div className="w-1/2 h-4 bg-gray-300 rounded" />
@@ -33,36 +67,5 @@ export default ({ props }: { props?: IData }) => {
         </div>
       </div>
     </div>
-  )
-  else return (
-    <>
-      <div className="w-full pb-5 lg:px-5 border-b select-none hover:scale-[1.02]">
-        <div className="flex flex-row p-2 hover:cursor-pointer" onClick={() => router.push(`/news/cybernews/${props.id}`)}>
-          <div className="flex flex-col w-2/3">
-            {/* Date */}
-            <small className="text-gray-500">{props.attributes.createdAt.slice(0, 10)} | {props.attributes.createdAt.slice(11, 19)}</small>
-            {/* Title */}
-            <div id={`title${props.id}`} className="text-2xl">{props.attributes.title}</div>
-          </div>
-          {/* Image */}
-          <div className="flex flex-col items-end w-1/3 p-2">
-            <Image
-              src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + props.attributes.thumbnail.data.attributes.url}
-              alt="Project"
-              className='rounded-md shadow-md'
-              width="112" height="112"
-            />
-          </div>
-        </div>
-        <div className="px-2">
-          {/* Categorys */}
-          {props.attributes.categories.data.map((item, index) => {
-            return (
-              <span key={index} className="text-xs text-gray-500">{item.attributes.name_en}</span>
-            )
-          })}
-        </div>
-      </div>
-    </>
   );
 }

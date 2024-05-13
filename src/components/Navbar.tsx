@@ -136,7 +136,7 @@ export default () => {
             <div className="flex flex-col items-center w-full">
                 <div className="flex flex-col px-3 gap-5">
                     <div className="flex flex-row items-center gap-5">
-                        <Image src="/KU-thai-80-borderless.webp" width={80} height={50} alt="KU-CERT Logo" />
+                        <Image src="/KU-thai-80-borderless.webp" className="w-auto h-auto" width={80} height={50} alt="KU-CERT Logo" />
                         <Link href="/">KU Computer Emergency Response Team (KU-CERT)</Link>
                     </div>
                     <ul className="flex flex-row gap-9 max-lg:hidden">

@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 const info = [
     "Office of Computer Services, Kasetsart University 50 Ngam Wong Wan Rd, Lat Yao Chatuchak Bangkok 10900",
     "Tel. +66 (0) 2562-0591 - 6 # 622501 (office), 622541-3 (helpdesk) and 622999 (Emergency)",
@@ -6,6 +8,15 @@ const info = [
     "Facebook: www.facebook.com/ocs.ku",
     "E-Mail: webmaster-cpc@ku.ac.th"
 ]
+
+export const metadata: Metadata = {
+    title: 'ติดต่อเรา | KU-CERT',
+    description: info.join('\n'),
+    openGraph: {
+        title: 'ติดต่อเรา | KU-CERT',
+        description: info.join('\n'),
+    },
+};
 
 export default function Page() {
     return (

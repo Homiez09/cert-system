@@ -15,8 +15,7 @@ const nextConfig = {
             },
         ],
     },
+    reactStrictMode: false,
 };
-
-export const strapi_base_url = process.env.STRAPI_BASE_URL;
 
 export default nextConfig;
