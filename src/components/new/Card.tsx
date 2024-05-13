@@ -19,8 +19,8 @@ export default ({ data }: { data: IData }) => {
                     <Image
                         src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + thumbnail}
                         alt={title}
+                        priority
                         fill
-                        loading="lazy"
                         className="object-cover rounded-t-lg w-full h-auto" />
                 </div>
                 <div className="flex flex-col p-2 w-full h-[100px]">

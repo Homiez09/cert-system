@@ -7,6 +7,17 @@ interface IMeta {
     }
 }
 
+export interface ICategory {
+    id: number;
+    attributes: {
+        name_en: string;
+        name_th: string;
+        createdAt: string;
+        updatedAt: string;
+        publishedAt: string;
+    }
+}
+
 export interface IData {
     id: number;
     attributes: {

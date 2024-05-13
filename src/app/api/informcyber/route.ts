@@ -4,11 +4,8 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
     try {
         const formData = await request.formData();
-        const allowedOrigin = process.env.NEXT_PUBLIC_URL;
 
-        if (request.headers.get('origin') !== allowedOrigin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/inform-cybers/`, formData, {
+        const res = await axios.post(`/api/inform-cybers/`, formData, {
             headers: {
                 Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
             },
@@ -19,6 +16,6 @@ export async function POST(request: Request) {
             message: res.statusText,
         })
     } catch (err) {
-        return NextResponse.json({ error: err }, { status: 400 })
+        return NextResponse.json({ status: 400, message: err }, { status: 400 })
     }
 }

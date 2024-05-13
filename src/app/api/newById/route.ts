@@ -9,10 +9,7 @@ interface IPayload {
 export async function POST(request: Request) {
     try {
         const payload = await request.json() as IPayload;
-        const allowedOrigin = process.env.NEXT_PUBLIC_URL;
-
-        if (request.headers.get('origin') !== allowedOrigin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-
+        
         const res = await axios.get(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/contents/${payload.id}?populate=*`, {
             headers: {
                 Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
@@ -33,6 +30,6 @@ export async function POST(request: Request) {
             } as RequestApiProps)
         }
     } catch (err) {
-        return NextResponse.json({ error: err }, { status: 400 })
+        return NextResponse.json({ status: 400, message: err }, { status: 400 })
     }
 }
