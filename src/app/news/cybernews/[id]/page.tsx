@@ -35,13 +35,13 @@ export async function generateMetadata(
             description: res.data.attributes.content,
             images: [
                 {
-                    url: res.data.attributes.thumbnail.data.attributes.url,
+                    url: process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data.attributes.url,
                     width: 800,
                     height: 600,
                     alt: res.data.attributes.title,
                 },
                 {
-                    url: res.data.attributes.thumbnail.data.attributes.url,
+                    url: process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data.attributes.url,
                     width: 1800,
                     height: 1600,
                     alt: res.data.attributes.title,

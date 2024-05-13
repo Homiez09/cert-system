@@ -27,20 +27,20 @@ export async function generateMetadata(
 
     return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
-        title: 'ข่าวสารภัยคุกคามทางไซเบอร์' + ' | KU-CERT',
+        title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | KU-CERT',
         description: `หน้า ${searchParams.page} : ${res.data.map((i) => i.attributes.title).join(', ')}`,
         openGraph: {
-            title: 'ข่าวสารภัยคุกคามทางไซเบอร์' + ' | KU-CERT',
+            title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | KU-CERT',
             description: `หน้า ${searchParams.page} : ${res.data.map((i) => i.attributes.title).join(', ')}`,
             images: [
                 {
-                    url: res.data[0].attributes.thumbnail.data.attributes.url,
+                    url: process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data[0].attributes.thumbnail.data.attributes.url,
                     width: 800,
                     height: 600,
                     alt: res.data[0].attributes.title,
                 },
                 {
-                    url: res.data[0].attributes.thumbnail.data.attributes.url,
+                    url: process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data[0].attributes.thumbnail.data.attributes.url,
                     width: 1800,
                     height: 1600,
                     alt: res.data[0].attributes.title,

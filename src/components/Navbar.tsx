@@ -55,11 +55,10 @@ export default () => {
         },
         {
             title: "เกี่ยวกับ KU-CERT",
-            href: "/about",
             dropdown: [
                 {
                     key: '1',
-                    label: getLabel("เกี่ยวกับ KU-CERT", "/")
+                    label: getLabel("เกี่ยวกับ KU-CERT", "/about-us")
                 },
                 {
                     key: '2',
@@ -101,7 +100,6 @@ export default () => {
         },
         {
             title: "กิจกรรมหน่วยงาน",
-            href: "/activities",
             dropdown: [
                 {
                     key: '1',
@@ -153,7 +151,7 @@ export default () => {
                                 )
                             } else {
                                 return (
-                                    <Link href={item.href} key={index} className="hover:cursor-pointer">{item.title}</Link>
+                                    <Link href={item.href!} key={index} className="hover:cursor-pointer">{item.title}</Link>
                                 )
                             }
                         })}
@@ -184,7 +182,7 @@ export default () => {
                                             )
                                         } else {
                                             return (
-                                                <Link href={item.href} key={index} className="hover:cursor-pointer" onClick={toggleDropdownClose}>{item.title}</Link>
+                                                <Link href={item.href!} key={index} className="hover:cursor-pointer" onClick={toggleDropdownClose}>{item.title}</Link>
                                             )
                                         }
                                     })}
