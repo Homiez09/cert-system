@@ -6,7 +6,6 @@ import { SearchBox } from "@/components/new/SearchBox";
 import { IData } from "@/interfaces/RequestApiProps";
 import { useEffect, useState } from "react";
 
-
 export default function Page() {
     const [dataList, setDataList] = useState<IData[]>();
     const [result, setResult] = useState<string>("");

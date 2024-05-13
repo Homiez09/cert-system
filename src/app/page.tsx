@@ -6,7 +6,6 @@ import { RecommendCyberNews } from "@/components/new/RecommendCyberNews";
 import { RequestApiProps } from "@/interfaces/RequestApiProps";
 import { Metadata } from "next";
 
-
 const banners: BannerCarouselProps[] = [
   {
     src: "/banner01.webp",
@@ -19,30 +18,8 @@ const banners: BannerCarouselProps[] = [
   },
 ]
 
-export async function generateMetadata(): Promise<Metadata> {
-  const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/newByPage`, { page: 1, pageSize: 5 }).then((res) => res.data) as RequestApiProps;
-
-  return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
-    openGraph: {
-      title: 'หน้าแรก | KU-CERT',
-      description: `แนะนำ : ${res.data.map((i) => i.attributes.title).join(', ')}`,
-      images: [
-        {
-          url: res.data[0].attributes.thumbnail.data.attributes.url,
-          width: 800,
-          height: 600,
-          alt: res.data[0].attributes.title,
-        },
-        {
-          url: res.data[0].attributes.thumbnail.data.attributes.url,
-          width: 1800,
-          height: 1600,
-          alt: res.data[0].attributes.title,
-        },
-      ],
-    },
-  }
+export const metadata: Metadata ={
+  title: 'หน้าแรก | KU-CERT',
 }
 
 export default async function Home() {

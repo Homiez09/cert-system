@@ -20,7 +20,7 @@ export async function generateMetadata(
         title: 'ไม่พบข้อมูล | KU-CERT',
         description: `หน้า ${searchParams.page} : ไม่พบข้อมูล`,
         openGraph: {
-            title: 'KU-CERT | ข่าวสารภัยคุกคามทางไซเบอร์',
+            title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | KU-CERT',
             description: `หน้า ${searchParams.page} : ไม่พบข้อมูล`,
         }
     };
