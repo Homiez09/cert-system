@@ -23,7 +23,7 @@ export default ({ data }: { data: IData }) => {
                         fill
                         className="object-cover rounded-t-lg w-full h-auto" />
                 </div>
-                <div className="flex flex-col p-2 w-full h-[100px]">
+                <div className="flex flex-col p-2 w-full h-[100px] justify-between">
                     <Link href={`/news/${category}/${id}`} className="text-lg font-bold hover:text-hover text-ellipsis">{title}</Link>
                     <div className="flex flex-row justify-between items-end">
                         <Link href={`/news/${category}`} className="text-sm text-primary hover:text-hover">{categoryTH}</Link>
