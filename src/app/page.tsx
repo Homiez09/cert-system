@@ -1,9 +1,7 @@
 import ImageCarousel from "@/components/ImageCarousel";
 import BannerCarouselProps from "@/interfaces/BannerCarouselProps";
 import Link from "next/link";
-import axios from "axios";
 import { RecommendCyberNews } from "@/components/new/RecommendCyberNews";
-import { RequestApiProps } from "@/interfaces/RequestApiProps";
 import { Metadata } from "next";
 
 const banners: BannerCarouselProps[] = [
