@@ -22,7 +22,7 @@ export default function Page() {
         <div className="flex flex-col pt-3 w-full max-lg:px-3 min-h-[60vh]">
             <SearchBox setResult={setResult} />
             <div className="w-full container max-w-5xl mt-5 h-full pt-5">
-                {dataList ? dataList.filter((item: IData) => item.attributes.title.toLowerCase().includes(result.toLowerCase())).map((item: IData, index: number) => {
+                {dataList ? dataList.filter((item: IData) => item.attributes.title.toLowerCase().includes(result.toLowerCase()) || item.attributes.categories.data[0]?.attributes.name_th.includes(result.toLowerCase()) ).map((item: IData, index: number) => {
                     return (
                         <Card2 key={index} props={item} />
                     );
