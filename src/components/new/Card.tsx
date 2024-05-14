@@ -21,6 +21,7 @@ export default ({ data }: { data: IData }) => {
                         alt={title}
                         priority
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover rounded-t-lg w-full h-auto" />
                 </div>
                 <div className="flex flex-col p-2 w-full h-[100px] justify-between">

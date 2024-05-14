@@ -16,6 +16,52 @@ const config: Config = {
         secondary: "#52bee5",
         success: "#02BC77",
         hover: "#02BC77",
+      },
+      animation: {
+        navbarUp: 'hiddenNavbarUp 0.3s ease-in-out',
+        navbarDown: 'hiddenNavbarDown 0.3s ease-in-out',
+        navbarMobileMenu: 'showMobileMenu 0.3s ease-in-out',
+        navbarMobileMenuHidden: 'hiddenMobileMenu 0.3s ease-in-out'
+      },
+      keyframes: {
+        hiddenNavbarUp: {
+          '0%': {
+            opacity: '0'
+          },
+          '100%': {
+            opacity: '1'
+          },
+        },
+        hiddenNavbarDown: {
+          '0%': {
+            transform: 'translateY(-100px)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
+        showMobileMenu: {
+          '0%': {
+            transform: 'translateY(-30%)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            'opacity': '1',
+          },
+        },
+        hiddenMobileMenu: {
+          '0%': {
+            transform: 'translateY(0)',
+            height: '100vh',
+            background: '#06011F',
+          },
+          '100%': {
+            transform: 'translateY(-40%)',
+            height: '20vh',
+            background: 'transparent'
+          },
+        },
       }
     },
     container: {
