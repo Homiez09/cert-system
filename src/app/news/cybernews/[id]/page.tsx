@@ -60,7 +60,7 @@ export default async function Page({ params }: { params: { id: number } }) {
                 <div className="flex flex-col h-full items-center justify-center text-white">
                     <span className="lg:text-2xl text-xl text-center px-2 text-ellipsis">{res.data.attributes.title}</span>
                 </div>
-                <Image placeholder="empty" quality={100} loading="lazy" src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data.attributes.url} className="object-cover opacity-30 w-auto h-auto select-none blur-xl" fill={true} alt={res.data.attributes.title} />
+                <Image placeholder="empty" quality={100} priority src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data.attributes.url} className="object-cover w-auto h-auto select-none blur-xl opacity-50" fill={true} alt={res.data.attributes.title} />
             </div>
             <div className="md:w-[680px] w-full px-1">
                 <div className="w-full flex flex-row items-center justify-center p-3 gap-1">

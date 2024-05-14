@@ -138,7 +138,7 @@ export default () => {
                         <Link href="/">KU Computer Emergency Response Team (KU-CERT)</Link>
                     </div>
                     {isFixed ? <div className="h-5" /> : null}
-                    <div className={isFixed ? 'fixed top-0 left-0 z-20 shadow-md py-3 w-full bg-white flex flex-col items-center animate-navbarDown' : 'animate-navbarUp'}>
+                    <div className={isFixed ? 'fixed z-[999] top-0 left-0 shadow-md py-3 w-full bg-white flex flex-col items-center animate-navbarDown' : 'animate-navbarUp'}>
                         <div className='flex flex-row gap-9 max-lg:hidden'>
                             {menuitems.map((item, index) => {
                                 if (item.dropdown) {
