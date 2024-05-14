@@ -1,14 +1,15 @@
 'use client';
 
-import { IData } from "@/interfaces/RequestApiProps";
+import { ICategory, IData } from "@/interfaces/RequestApiProps";
 import Image from "next/image";
 import Link from "next/link";
 
 export default ({ data }: { data: IData }) => {
     const id = data.id;
     const title = data.attributes.title;
-    const category = data.attributes.categories.data[0].attributes?.name_en || "";
-    const categoryTH = data.attributes.categories.data[0].attributes.name_th || "";
+    // const category = data.attributes.categories.data.map((category: ICategory) => category.attributes.name_en).join(", ");
+    const category = data.attributes.categories.data.map((category: ICategory) => category.attributes.name_th).join(", ");
+    const categoryTH = data.attributes.categories.data.map((category: ICategory) => category.attributes.name_th).join(", ");
     const thumbnail = data.attributes.thumbnail?.data.attributes.url || "";
     const createdAt = data.attributes.createdAt;
 
@@ -25,9 +26,9 @@ export default ({ data }: { data: IData }) => {
                         className="object-cover rounded-t-lg w-full h-auto" />
                 </div>
                 <div className="flex flex-col p-2 w-full h-[100px] justify-between">
-                    <Link href={`/news/${category}/${id}`} className="text-lg font-bold hover:text-hover text-ellipsis">{title}</Link>
+                    <Link href={`/news/cybernews/${id}`} className="text-lg font-bold hover:text-hover text-ellipsis">{title}</Link>
                     <div className="flex flex-row justify-between items-end">
-                        <Link href={`/news/${category}`} className="text-sm text-primary hover:text-hover">{categoryTH}</Link>
+                        <Link href={`/news/cybernews`} className="text-sm text-primary hover:text-hover">{categoryTH}</Link>
                         <span className="text-sm text-gray-500 pt-2">{createdAt.slice(0, 10)}</span>
                     </div>
                 </div>

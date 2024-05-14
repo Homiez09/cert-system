@@ -11,9 +11,11 @@ export default ({ props }: { props?: IData }) => {
 
   useEffect(() => {
     try {
-      let title = document.querySelector(`#title${props!.id}`);
+      const title = document.querySelector(`#title${props!.id}`);
+      const categorie = document.querySelector(`#categorie${props!.id}`);
 
       title!.innerHTML = props!.attributes.title.replace(new RegExp(query + '(?!([^<]+)?<)', 'gi'), '<mark>$&</mark>');
+      categorie!.innerHTML = props!.attributes.categories.data.map((item) => item.attributes.name_th).join(", ").replace(new RegExp(query + '(?!([^<]+)?<)', 'gi'), '<mark>$&</mark>');
     } catch (err) {
       // console.log(err);
     }
@@ -44,7 +46,7 @@ export default ({ props }: { props?: IData }) => {
           {/* Categorys */}
           {props!.attributes.categories.data.map((item, index) => {
             return (
-              <span key={index} className="text-xs text-gray-500">{item.attributes.name_en}</span>
+              <div id={`categorie${props!.id}`} key={index} className="text-xs text-gray-500">{item.attributes.name_th}</div>
             )
           })}
         </div>
