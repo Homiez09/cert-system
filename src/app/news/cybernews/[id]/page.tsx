@@ -53,14 +53,15 @@ export async function generateMetadata(
 
 export default async function Page({ params }: { params: { id: number } }) {
     const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/newById`, { id: params.id }).then((res) => res.data).catch((err) => err.response.data) as RequestApiPropsById;
-    if (res.status === 400) return (<Custom404 />)
+    if (res.status === 400) return (<Custom404 />);
+    if (res.data.attributes.publishedAt === null) return (<Custom404 />);
     return (
         <>
             <div className="relative w-full lg:h-[180px] h-[90px] bg-black" >
-                <div className="flex flex-col h-full items-center justify-center text-white">
+                <div className="absolute z-10 flex flex-col h-full w-full items-center justify-center text-white">
                     <span className="lg:text-2xl text-xl text-center px-2 text-ellipsis">{res.data.attributes.title}</span>
                 </div>
-                <Image placeholder="empty" quality={100} priority src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data.attributes.url} className="object-cover w-auto h-auto select-none blur-xl opacity-50" fill={true} alt={res.data.attributes.title} />
+                <Image placeholder="empty" quality={100} src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data.attributes.url} className="object-cover w-auto h-auto select-none blur-xl opacity-50" fill={true} alt={res.data.attributes.title} />
             </div>
             <div className="md:w-[680px] w-full px-1">
                 <div className="w-full flex flex-row items-center justify-center p-3 gap-1">
