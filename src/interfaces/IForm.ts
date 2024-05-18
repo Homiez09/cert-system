@@ -1,6 +1,9 @@
+import { UploadChangeParam, UploadFile } from "antd/es/upload";
+
 export interface IForm {
     agency: string | null;
     contact: string | null;
+    email: string | null;
     event: string | null;
     cause: string | null;
     impact: string | null;
@@ -9,5 +12,5 @@ export interface IForm {
     category: string | null;
     severity: string | null;
     needAssistance: string | null;
-    image: any | null;
+    images?: any | null;
 }

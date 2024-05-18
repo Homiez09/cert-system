@@ -25,6 +25,7 @@ export default function Page() {
     const [form, setForm] = useState<IForm>({
         agency: null,
         contact: null,
+        email: null,
         event: null,
         cause: null,
         impact: null,
@@ -33,12 +34,11 @@ export default function Page() {
         category: null,
         severity: null,
         needAssistance: null,
-        image: null,
+        images: null,
     });
 
-
     const checkForm = () => {
-        const requiredFields = ['agency', 'contact', 'event', 'cause', 'impact', 'dateAndTime', 'eventType', 'category', 'severity', 'needAssistance']
+        const requiredFields = ['agency', 'contact', 'email', 'event', 'cause', 'impact', 'dateAndTime', 'eventType', 'category', 'severity', 'needAssistance']
         const isCompleteTemp = requiredFields.every(field => form[field as keyof typeof form] !== null && form[field as keyof typeof form] !== "");
 
         setIsComplete(isCompleteTemp);
@@ -66,9 +66,10 @@ export default function Page() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log(form)
         const formData = new FormData();
         formData.append('data', JSON.stringify(form));
-        formData.append('files.image', form.image);
+        form.images.map((image: any) => formData.append('files.image', image.originFileObj))
 
         toast.promise(
             axios.post(`${process.env.NEXT_PUBLIC_URL}/api/informcyber`, formData).then(res => {
@@ -89,11 +90,12 @@ export default function Page() {
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
-        if (e.file) {
-            setForm({ ...form, image: e.file });
+        if (e.fileList) {
+            setForm({ ...form, images: e.fileList })
         } else {
             setForm({ ...form, [e.target.name]: e.target.value })
         }
+        console.log(form)
     }
 
     useEffect(() => {
@@ -113,6 +115,10 @@ export default function Page() {
 
                         <div><p className="font-bold">ติดต่อกลับ*</p>
                             <Input placeholder='0XXXXXXXXX' name="contact" onChange={handleChange} required />
+                        </div>
+
+                        <div><p className="font-bold">อีเมล*</p>
+                            <Input placeholder='0XXXXXXXXX' name="email" type='email' onChange={handleChange} required />
                         </div>
 
                         <div><p className="font-bold">เหตุการณ์*</p>
@@ -199,11 +205,11 @@ export default function Page() {
                             <p className="font-bold">รูปภาพ</p>
                             <Upload
                                 listType="picture"
-                                multiple={false}
+                                multiple
                                 onChange={handleChange}
                                 accept="image/png, image/webp, image/jpg, image/jpeg"
                                 beforeUpload={() => false}
-                                maxCount={1}
+                                maxCount={5}
                             >
                                 <Button icon={<UploadOutlined />}>Upload</Button>
                             </Upload>
