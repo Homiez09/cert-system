@@ -22,16 +22,16 @@ export async function generateMetadata(
         metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
         description: `ไม่พบข้อมูล`,
         openGraph: {
-            title: 'KU-CERT | ข่าวสารภัยคุกคามทางไซเบอร์',
+            title: 'EDUCERT | ข่าวสารภัยคุกคามทางไซเบอร์',
             description: `ไม่พบข้อมูล`,
         }
     }
     return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
-        title: res.data.attributes.title + ' | KU-CERT',
+        title: res.data.attributes.title + ' | EDUCERT',
         description: res.data.attributes.content,
         openGraph: {
-            title: res.data.attributes.title + ' | KU-CERT',
+            title: res.data.attributes.title + ' | EDUCERT',
             description: res.data.attributes.content,
             images: [
                 {

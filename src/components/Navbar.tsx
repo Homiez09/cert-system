@@ -54,15 +54,15 @@ export default () => {
             href: "/",
         },
         {
-            title: "เกี่ยวกับ KU-CERT",
+            title: "เกี่ยวกับ EDUCERT",
             dropdown: [
                 {
                     key: '1',
-                    label: getLabel("เกี่ยวกับ KU-CERT", "/about-us")
+                    label: getLabel("เกี่ยวกับ EDUCERT", "/about-us")
                 },
                 {
                     key: '2',
-                    label: getLabel("หน้าที่และอำนาจของ KU-CERT", "/")
+                    label: getLabel("หน้าที่และอำนาจของ EDUCERT", "/")
                 },
                 {
                     key: '3',
@@ -134,8 +134,8 @@ export default () => {
             <div className="flex flex-col items-center w-full">
                 <div className="flex flex-col px-3 gap-5">
                     <div className="flex flex-row items-center gap-5">
-                        <Image src="/KU-thai-80-borderless.webp" className="w-auto h-auto" width={80} height={50} alt="KU-CERT Logo" />
-                        <Link href="/">KU Computer Emergency Response Team (KU-CERT)</Link>
+                        <Image src="/KU-thai-80-borderless.webp" className="w-auto h-auto" width={80} height={50} alt="EDUCERT LOGO" />
+                        <Link href="/">Education Computer Emergency Response Team (EDUCERT)</Link>
                     </div>
                     {isFixed ? <div className="h-5" /> : null}
                     <div className={isFixed ? 'fixed z-[999] top-0 left-0 shadow-md py-3 w-full bg-white flex flex-col items-center animate-navbarDown' : 'animate-navbarUp'}>
