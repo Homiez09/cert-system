@@ -8,7 +8,7 @@ const banners: BannerCarouselProps[] = [
   {
     src: "/banner01.webp",
     alt: "banner",
-    text: "Welcome to | KU-CERT"
+    text: "Welcome to | EDUCERT"
   },
   {
     src: "/banner02.webp",
@@ -17,7 +17,7 @@ const banners: BannerCarouselProps[] = [
 ]
 
 export const metadata: Metadata ={
-  title: 'หน้าแรก | KU-CERT',
+  title: 'หน้าแรก | EDUCERT',
 }
 
 export default async function Home() {

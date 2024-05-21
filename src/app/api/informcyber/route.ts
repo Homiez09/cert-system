@@ -5,7 +5,7 @@ export async function POST(request: Request) {
     try {
         const formData = await request.formData();
 
-        const res = await axios.post(`/api/inform-cybers/`, formData, {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/inform-cybers/`, formData, {
             headers: {
                 Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
             },

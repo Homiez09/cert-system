@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-    title: 'ค้นหา | KU-CERT',
+    title: 'ค้นหา | EDUCERT',
     description: 'ค้นหาข่าวสารภัยคุกคามทางไซเบอร์',
     openGraph: {
-        title: 'ค้นหา | KU-CERT',
+        title: 'ค้นหา | EDUCERT',
         description: 'ค้นหาข่าวสารภัยคุกคามทางไซเบอร์',
     }
 }

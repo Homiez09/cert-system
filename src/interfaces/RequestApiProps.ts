@@ -1,3 +1,5 @@
+import { IForm } from "./IForm";
+
 interface IMeta {
     pagination: {
         page: number;
@@ -40,6 +42,12 @@ export interface IData {
                     }
                 }
             ]
+        }
+        inform_cyber?: {
+            data: {
+                id: number;
+                attributes: IForm;
+            };
         }
     }
 }

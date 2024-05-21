@@ -10,7 +10,7 @@ export default ({ data }: { data: IData }) => {
     // const category = data.attributes.categories.data.map((category: ICategory) => category.attributes.name_en).join(", ");
     const category = data.attributes.categories.data.map((category: ICategory) => category.attributes.name_th).join(", ");
     const categoryTH = data.attributes.categories.data.map((category: ICategory) => category.attributes.name_th).join(", ");
-    const thumbnail = data.attributes.thumbnail?.data.attributes.url || "";
+    const src = data.attributes.thumbnail.data? process.env.NEXT_PUBLIC_STRAPI_BASE_URL + data.attributes.thumbnail.data.attributes.url : "/no-image.png";
     const createdAt = data.attributes.createdAt;
 
     return (
@@ -18,7 +18,7 @@ export default ({ data }: { data: IData }) => {
             <div className="flex flex-col gap-3 w-full h-[325px] shadow-lg rounded-lg border relative z-[99]">
                 <div className="relative w-full h-52 rounded-t-lg">
                     <Image
-                        src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + thumbnail}
+                        src={src}
                         alt={title}
                         priority
                         fill

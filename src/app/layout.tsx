@@ -7,8 +7,8 @@ import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "KU-CERT | Kasetsart University Computer Emergency Response Team",
-  description: "Kasetsart University Computer Emergency Response Team | เตือนภัยคุกคามทางไซเบอร์",
+  title: "EDUCERT | Education Computer Emergency Response Team",
+  description: "Education Computer Emergency Response Team | เตือนภัยคุกคามทางไซเบอร์",
   icons: "/KU-thai-80-borderless.webp"
 };
 

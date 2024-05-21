@@ -17,20 +17,20 @@ export async function generateMetadata(
 
     if (res.data.length <= 0) return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
-        title: 'ไม่พบข้อมูล | KU-CERT',
+        title: 'ไม่พบข้อมูล | EDUCERT',
         description: `หน้า ${searchParams.page} : ไม่พบข้อมูล`,
         openGraph: {
-            title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | KU-CERT',
+            title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | EDUCERT',
             description: `หน้า ${searchParams.page} : ไม่พบข้อมูล`,
         }
     };
 
     return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
-        title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | KU-CERT',
+        title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | EDUCERT',
         description: `หน้า ${searchParams.page} : ${res.data.map((i) => i.attributes.title).join(', ')}`,
         openGraph: {
-            title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | KU-CERT',
+            title: 'ข่าวสารภัยคุกคามทางไซเบอร์ | EDUCERT',
             description: `หน้า ${searchParams.page} : ${res.data.map((i) => i.attributes.title).join(', ')}`,
             images: [
                 {
