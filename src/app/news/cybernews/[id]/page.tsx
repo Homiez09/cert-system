@@ -35,13 +35,13 @@ export async function generateMetadata(
             description: res.data.attributes.content,
             images: [
                 {
-                    url: process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data?.attributes.url,
+                    url: res.data.attributes.thumbnail.data? process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data?.attributes.url : '/no-image.png',
                     width: 800,
                     height: 600,
                     alt: res.data.attributes.title,
                 },
                 {
-                    url: process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data?.attributes.url,
+                    url: res.data.attributes.thumbnail.data? process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data?.attributes.url : '/no-image.png',
                     width: 1800,
                     height: 1600,
                     alt: res.data.attributes.title,
@@ -61,7 +61,7 @@ export default async function Page({ params }: { params: { id: number } }) {
                 <div className="absolute z-10 flex flex-col h-full w-full items-center justify-center text-white">
                     <span className="lg:text-2xl text-xl text-center px-2 text-ellipsis">{res.data.attributes.title}</span>
                 </div>
-                <Image placeholder="empty" quality={100} src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail?.data?.attributes.url} className="object-cover w-auto h-auto select-none blur-xl opacity-50" fill={true} alt={res.data.attributes.title} />
+                <Image placeholder="empty" quality={100} src={res.data.attributes.thumbnail.data? process.env.NEXT_PUBLIC_STRAPI_BASE_URL + res.data.attributes.thumbnail.data?.attributes.url : '/no-image.png'} className="object-cover w-auto h-auto select-none blur-xl opacity-50" fill={true} alt={res.data.attributes.title} />
             </div>
             <div className="md:w-[680px] w-full px-1">
                 <div className="w-full flex flex-row items-center justify-center p-3 gap-1">

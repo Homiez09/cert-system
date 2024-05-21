@@ -25,20 +25,20 @@ export default ({ props }: { props?: IData }) => {
   return (
     <>
       <div className="w-full pb-5 lg:px-5 border-b select-none hover:scale-[1.02]">
-        <div className="flex flex-row p-2 hover:cursor-pointer" onClick={() => router.push(`/news/cybernews/${props!.id}`)}>
-          <div className="flex flex-col w-2/3">
+        <div className="flex flex-row p-2 hover:cursor-pointer gap-4" onClick={() => router.push(`/news/cybernews/${props!.id}`)}>
+          <div className="flex flex-col w-full">
             {/* Date */}
             <small className="text-gray-500">{props!.attributes.createdAt.slice(0, 10)} | {props!.attributes.createdAt.slice(11, 19)}</small>
             {/* Title */}
             <div id={`title${props!.id}`} className="text-2xl">{props!.attributes.title}</div>
           </div>
           {/* Image */}
-          <div className="flex flex-col items-end w-1/3 p-2">
+          <div className="flex flex-col items-end w-24 h-24 p-2 relative">
             <Image
-              src={process.env.NEXT_PUBLIC_STRAPI_BASE_URL + props!.attributes.thumbnail.data.attributes.url}
+              src={props!.attributes.thumbnail.data ? process.env.NEXT_PUBLIC_STRAPI_BASE_URL + props!.attributes.thumbnail.data?.attributes.url : "/no-image.png"}
               alt="Project"
-              className='rounded-md shadow-md'
-              width="112" height="112"
+              className='rounded-md shadow-md object-cover'
+              fill
             />
           </div>
         </div>
