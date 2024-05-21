@@ -10,7 +10,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'kucert.ku.ac.th',
+                hostname: 'educert.ku.ac.th',
                 pathname: '**',
             },
         ],
