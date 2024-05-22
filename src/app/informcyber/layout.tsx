@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "แจ้งเหตุภัยคุกคาม | KU-CERT",
+  title: "แจ้งเหตุภัยคุกคาม | EDUCERT",
   description: "แบบฟอร์มแจ้งเหตุภัยคุกคามทางไซเบอร์",
   openGraph: {
-    title: "แจ้งเหตุภัยคุกคาม | KU-CERT",
+    title: "แจ้งเหตุภัยคุกคาม | EDUCERT",
     description: "แบบฟอร์มแจ้งเหตุภัยคุกคามทางไซเบอร์",
   },
 };
