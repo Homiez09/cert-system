@@ -6,13 +6,9 @@ import { Metadata } from "next";
 
 const banners: BannerCarouselProps[] = [
   {
-    src: "/banner01.webp",
+    src: "/educert_banner.jpg",
     alt: "banner",
     text: "Welcome to | EDUCERT"
-  },
-  {
-    src: "/banner02.webp",
-    alt: "banner",
   },
 ]
 

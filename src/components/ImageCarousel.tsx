@@ -18,17 +18,17 @@ export default ({ banners, autoplay = false }: { banners: BannerCarouselProps[],
                         return (
                             <div key={index} className="relative w-full h-[300px]">
                                 {item.text ?
-                                    <div className="absolute z-10  w-full h-full p-[30px] text-center text-white">
+                                    <div className="absolute z-10  w-full h-full p-[30px] text-center text-white whitespace-pre-line text-shadow text-shadow-blur-10">
                                         {item.text.split('|').length > 1 ?
                                             <>
-                                                <span className={abel.className + ' text-[60px] whitespace-pre-line text-white'}>
+                                                <span className={abel.className + ' text-[60px]'}>
                                                     {item.text.split('|')[0]}
                                                 </span> <br />
-                                                <span className={abel.className + ' text-[100px] whitespace-pre-line text-white'}>
+                                                <span className={abel.className + ' text-[100px]'}>
                                                     {item.text.split('|')[1]}
                                                 </span>
                                             </> : <>
-                                                <span className={abel.className + ' text-[60px] whitespace-pre-line text-white'}>
+                                                <span className={abel.className + ' text-[60px]'}>
                                                     {item.text}
                                                 </span>
                                             </>
