@@ -68,6 +68,6 @@ const config: Config = {
       center: true,
     },
   },
-  plugins: [nextui(), require("@tailwindcss/typography"), require("tailwindcss-animate")],
+  plugins: [nextui(), require("@tailwindcss/typography"), require("tailwindcss-animate"), require("@designbycode/tailwindcss-text-shadow")],
 };
 export default config;

@@ -5,15 +5,20 @@ import { RecommendCyberNews } from "@/components/new/RecommendCyberNews";
 import { Metadata } from "next";
 
 const banners: BannerCarouselProps[] = [
-  {
-    src: "/banner01.webp",
-    alt: "banner",
-    text: "Welcome to | EDUCERT"
-  },
-  {
-    src: "/banner02.webp",
-    alt: "banner",
-  },
+    {
+      src: "/educert_banner.webp",
+      alt: "banner",
+      text: "Welcome to | EDUCERT"
+    },
+//   {
+//     src: "/banner01.webp",
+//     alt: "banner",
+//     text: "Welcome to | EDUCERT"
+//   },
+//   {
+//     src: "/banner02.webp",
+//     alt: "banner",
+//   },
 ]
 
 export const metadata: Metadata ={
