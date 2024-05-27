@@ -1,5 +1,3 @@
-import { UploadChangeParam, UploadFile } from "antd/es/upload";
-
 export interface IForm {
     agency: string | null;
     contact: string | null;
