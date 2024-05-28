@@ -1,6 +1,5 @@
 import CardList from "@/components/dashboard/CardList";
 import { Metadata } from "next";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
     title: 'แดชบอร์ด | EDUCERT',

@@ -8,6 +8,7 @@ export interface IForm {
     dateAndTime: Date | null;
     eventType: string | null;
     category: string | null;
+    other?: string | null
     severity: string | null;
     needAssistance: string | null;
     images?: any | null;

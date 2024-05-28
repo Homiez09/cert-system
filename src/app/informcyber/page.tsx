@@ -32,6 +32,7 @@ export default function Page() {
         dateAndTime: null,
         eventType: null,
         category: null,
+        other: null,
         severity: null,
         needAssistance: null,
         images: null,
@@ -42,7 +43,7 @@ export default function Page() {
         const isCompleteTemp = requiredFields.every(field => form[field as keyof typeof form] !== null && form[field as keyof typeof form] !== "");
 
         setIsComplete(isCompleteTemp);
-    }
+    };
 
     const onDateChange: DatePickerProps['onChange'] = (_, dateStr) => {
         handleSelectChange('dateAndTime', _?.toDate());
@@ -52,29 +53,38 @@ export default function Page() {
         handleSelectChange('eventType', value);
     };
 
-    const handleCategoryChange = (value: string) => {
-        handleSelectChange('category', value);
-    }
+    const handleCategoryChange = async (value: string) => {
+        setForm((prevForm) => {
+            const updatedForm = { ...prevForm, category: value };
+
+            if (value !== 'Other') {
+                updatedForm.other = null;
+            }
+
+            return updatedForm;
+        });
+    };
 
     const handleSeverityChange = (value: string) => {
         handleSelectChange('severity', value);
-    }
+    };
 
     const handleHelpChange = (value: string) => {
         handleSelectChange('needAssistance', value);
-    }
+    };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(form)
+
         const formData = new FormData();
         formData.append('data', JSON.stringify(form));
-        form.images.map((image: any) => formData.append('files.image', image.originFileObj))
+        form.images?.map((image: any) => formData.append('files.image', image.originFileObj))
 
         toast.promise(
             axios.post(`${process.env.NEXT_PUBLIC_URL}/api/informcyber`, formData).then(res => {
                 if (res.status === 200) {
-                    window.location.reload();
+                    // window.location.reload();
                 }
             }),
             {
@@ -83,11 +93,11 @@ export default function Page() {
                 error: <b>Could not save.</b>,
             }
         );
-    }
+    };
 
-    const handleSelectChange = (key: string, value: string | Date) => {
+    const handleSelectChange = (key: string, value: string | Date | null) => {
         setForm({ ...form, [key]: value });
-    }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
         if (e.fileList) {
@@ -95,8 +105,7 @@ export default function Page() {
         } else {
             setForm({ ...form, [e.target.name]: e.target.value })
         }
-        console.log(form)
-    }
+    };
 
     useEffect(() => {
         checkForm();
@@ -108,9 +117,8 @@ export default function Page() {
             <form className="flex flex-col items-center" onSubmit={handleSubmit}>
                 <div className="flex flex-col w-full md:flex-row p-8 md:space-x-5 max-md:space-y-5">
                     <div className="w-full space-y-3">
-                        <div>
-                            <p className="font-bold">หน่วยงาน*</p>
-                            <Input className="border" placeholder='หน่วยงาน' name="agency" onChange={handleChange} required autoFocus />
+                        <div><p className="font-bold">หน่วยงาน*</p>
+                            <Input placeholder='หน่วยงาน' name="agency" onChange={handleChange} required autoFocus />
                         </div>
 
                         <div><p className="font-bold">ติดต่อกลับ*</p>
@@ -118,7 +126,7 @@ export default function Page() {
                         </div>
 
                         <div><p className="font-bold">อีเมล*</p>
-                            <Input placeholder='0XXXXXXXXX' name="email" type='email' onChange={handleChange} required />
+                            <Input placeholder='xxxx@ku.th' name="email" type='email' onChange={handleChange} required />
                         </div>
 
                         <div><p className="font-bold">เหตุการณ์*</p>
@@ -164,15 +172,18 @@ export default function Page() {
                                 className="w-full"
                                 onChange={handleCategoryChange}
                                 options={[
-                                    { value: 'Data Leak', label: 'ข้อมูลรั่วไหล' },
-                                    { value: 'Weaknesses', label: 'ช่องโหว่' },
-                                    { value: 'Misconfiguration', label: 'Misconfiguration' },
-                                    { value: 'Website Defacement', label: 'Website Defacement' },
-                                    { value: 'Website Phishing', label: 'Website Phishing' },
-                                    { value: "Other", label: "อื่นๆ" }
+                                    { value: 'Defecement', label: 'Defecement' },
+                                    { value: 'Gambling', label: 'Gambling' },
+                                    { value: 'Malware', label: 'Malware' },
+                                    { value: "Other", label: "Other" }
                                 ]}
                             />
                         </div>
+                        {form.other}
+                        {form.category === 'Other' && <div>
+                            <p className="font-bold">ระบุหมวดหมู่*</p>
+                            <Input placeholder='ระบุหมวดหมู่' name="other" onChange={handleChange} defaultValue={form.other || ""} required />
+                        </div>}
 
                         <div>
                             <p className="font-bold">ระดับความรุนแรง*</p>

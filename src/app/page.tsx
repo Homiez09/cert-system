@@ -10,15 +10,6 @@ const banners: BannerCarouselProps[] = [
       alt: "banner",
       text: "Welcome to | EDUCERT"
     },
-//   {
-//     src: "/banner01.webp",
-//     alt: "banner",
-//     text: "Welcome to | EDUCERT"
-//   },
-//   {
-//     src: "/banner02.webp",
-//     alt: "banner",
-//   },
 ]
 
 export const metadata: Metadata ={
