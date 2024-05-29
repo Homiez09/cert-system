@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import Card, { CardSkeleton } from "./Card";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CardLineChart from "./CardLineChart";
 
 export interface ICategory {
     title: string;
@@ -40,26 +41,48 @@ export default function CardList() {
     ]);
 
     const [isReady, setReady] = useState<boolean>(false);
+    const [selected, setSelected] = useState<string>('All');
+    const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        console.log(selected);
+    }, [selected])
 
     useEffect(() => {
         axios.get('/api/informcyber').then((res) => {
             // split categories
             const data = res.data.data;
-            const categories = data.map((item: any) => {
-                return item.attributes.category;
+            interface ICategory {
+                category: string;
+                approval: string;
+            }
+
+            const categories: ICategory[] = data.map((item: any) => {
+                return {
+                    category: item.attributes.category,
+                    approval: item.attributes.inform_cyber_approval.data?.attributes?.type || 'Pending',
+                }
             });
+
             // count categories
-            const count = categories.reduce((acc: any, curr: any) => {
-                acc[curr] = (acc[curr] || 0) + 1;
+            const count = categories.reduce((acc: any, item: ICategory) => {
+                acc[item.category] = {
+                    All: (acc[item.category]?.All || 0) + 1,
+                    Approved: (acc[item.category]?.Approved || 0) + (item.approval === 'Approved' ? 1 : 0),
+                    Pending: (acc[item.category]?.Pending || 0) + (item.approval === 'Pending' ? 1 : 0),
+                    Rejected: (acc[item.category]?.Rejected || 0) + (item.approval === 'Rejected' ? 1 : 0),
+                };
                 return acc;
             }, {});
-            console.log(count);
+
+            setData(count);
+
             // update state
             setCategories((prev) => {
                 return prev.map((item, index) => {
                     return {
                         ...item,
-                        number: count[item.title] || 0
+                        number: count[item.title].Approved || 0
                     }
                 })
             });
@@ -68,16 +91,40 @@ export default function CardList() {
         });
     }, [])
     return (
-        <div className="grid grid-cols-1 md:grid-cols-4 px-3 pt-5 container max-w-5xl md:p-8 gap-5 w-full">
-            {isReady ? categories?.map((item: ICategory, index: number) => {
-                return (
-                    <Card key={index} form={item} />
-                )
-            }) : categories?.map((item: ICategory, index: number) => {
-                return (
-                    <CardSkeleton key={index} form={item} />
-                )
-            })}
-        </div >
+        <>
+            <div className="grid grid-cols-1 md:grid-cols-4 px-3 pt-12 container max-w-5xl gap-5 w-full">
+                {isReady ? categories?.map((item: ICategory, index: number) => {
+                    return (
+                        <Card key={index} form={item} onClick={setSelected} select={selected} />
+                    )
+                }) : categories?.map((item: ICategory, index: number) => {
+                    return (
+                        <CardSkeleton key={index} form={item} />
+                    )
+                })}
+                <div onClick={() => setSelected('All')} className="border text-center py-1 cursor-pointer rounded-xl hover:border-primary">Reset</div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 px-3 pt-12 container max-w-5xl gap-5 w-full">
+                <div className="col-span-2">
+                    <CardLineChart select={selected} />
+                </div>
+                <div className="">
+                    {
+                        data && selected !== 'All' && <>
+                            <p>Approved: {data[selected]?.Approved}</p>
+                            <p>Pending: {data[selected]?.Pending}</p>
+                            <p>Rejected: {data[selected]?.Rejected}</p>
+                        </>
+                        || <>
+                            {categories.map((item: ICategory, index: number) => {
+                                return (
+                                    <div key={index} className="">{item.title}: {item.number}</div>
+                                )
+                            })}
+                        </>
+                    }
+                </div>
+            </div >
+        </>
     )
 }

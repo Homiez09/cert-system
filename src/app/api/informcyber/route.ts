@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
     try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/inform-cybers/`, {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/inform-cybers?populate=*&pagination[page]=1&pagination[pageSize]=99999`, {
             headers: {
                 Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
             },

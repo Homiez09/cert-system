@@ -84,7 +84,7 @@ export default function Page() {
         toast.promise(
             axios.post(`${process.env.NEXT_PUBLIC_URL}/api/informcyber`, formData).then(res => {
                 if (res.status === 200) {
-                    // window.location.reload();
+                    window.location.reload();
                 }
             }),
             {
@@ -179,7 +179,7 @@ export default function Page() {
                                 ]}
                             />
                         </div>
-                        {form.other}
+                        
                         {form.category === 'Other' && <div>
                             <p className="font-bold">ระบุหมวดหมู่*</p>
                             <Input placeholder='ระบุหมวดหมู่' name="other" onChange={handleChange} defaultValue={form.other || ""} required />
