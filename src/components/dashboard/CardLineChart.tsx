@@ -83,6 +83,7 @@ export default function CardLineChart({ select }: { select: string }) {
 
   return (
     <>
+      <div className="w-full text-center">กราฟแสดงการแจ้งภัยคุกคาม</div>
       {!charted &&
         <div className="flex flex-col h-[200px] w-full items-center justify-center">
           <div className="border-t-2 border-l-2 border-black rounded-full w-8 h-8 animate-spin"></div>

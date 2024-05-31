@@ -92,7 +92,9 @@ export default function CardList() {
     }, [])
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-4 px-3 pt-12 container max-w-5xl gap-5 w-full">
+            <p className="pt-3">ออกแบบมาเพื่อช่วยในการติดตามยอดการแจ้งภัยคุกคามทางไซเบอร์ต่างๆ นอกจากนี้สามารถคลิกเพื่อดูรายละเอียดเพิ่มเติมได้ ในส่วนของการอัพเดทจะทำทุกครั้งที่มีการแจ้งเข้ามา</p>
+            <div className="grid grid-cols-1 md:grid-cols-4 px-3 pt-6 container max-w-5xl gap-5 w-full">
+                <div className="md:col-start-4"><div onClick={() => setSelected('All')} className="border text-center py-1 cursor-pointer rounded-xl hover:border-primary">Overall</div></div>
                 {isReady ? categories?.map((item: ICategory, index: number) => {
                     return (
                         <Card key={index} form={item} onClick={setSelected} select={selected} />
@@ -102,7 +104,6 @@ export default function CardList() {
                         <CardSkeleton key={index} form={item} />
                     )
                 })}
-                <div onClick={() => setSelected('All')} className="border text-center py-1 cursor-pointer rounded-xl hover:border-primary">Reset</div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 px-3 pt-12 container max-w-5xl gap-5 w-full">
                 <div className="col-span-2">
