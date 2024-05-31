@@ -19,3 +19,21 @@ export async function POST(request: Request) {
         return NextResponse.json({ status: 400, message: err }, { status: 400 })
     }
 }
+
+export async function GET(request: Request) {
+    try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/api/inform-cybers?populate=*&pagination[page]=1&pagination[pageSize]=99999`, {
+            headers: {
+                Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
+            },
+        });
+
+        return NextResponse.json({
+            status: res.status,
+            message: res.statusText,
+            data: res.data.data
+        })
+    } catch (err) {
+        return NextResponse.json({ status: 400, message: err }, { status: 400 })
+    }
+}

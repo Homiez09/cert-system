@@ -10,10 +10,10 @@ const info = [
 ]
 
 export const metadata: Metadata = {
-    title: 'ติดต่อเรา | KU-CERT',
+    title: 'ติดต่อเรา | EDUCERT',
     description: info.join('\n'),
     openGraph: {
-        title: 'ติดต่อเรา | KU-CERT',
+        title: 'ติดต่อเรา | EDUCERT',
         description: info.join('\n'),
     },
 };
