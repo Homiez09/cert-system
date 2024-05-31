@@ -55,12 +55,6 @@ export interface IData {
 export interface RequestApiProps {
     status: number;
     message: string;
-    data: IData[];
-    meta: IMeta;
-}
-
-export interface RequestApiPropsById {
-    status: number;
-    message: string;
-    data: IData;
+    data: IData[] & IData;
+    meta?: IMeta;
 }

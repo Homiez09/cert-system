@@ -1,10 +1,11 @@
+import GoogleCaptchaWrapper from "@/components/GoogleCaptchaWrapper";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "แจ้งเหตุภัยคุกคาม | KU-CERT",
+  title: "แจ้งเหตุภัยคุกคาม | EDUCERT",
   description: "แบบฟอร์มแจ้งเหตุภัยคุกคามทางไซเบอร์",
   openGraph: {
-    title: "แจ้งเหตุภัยคุกคาม | KU-CERT",
+    title: "แจ้งเหตุภัยคุกคาม | EDUCERT",
     description: "แบบฟอร์มแจ้งเหตุภัยคุกคามทางไซเบอร์",
   },
 };
@@ -14,5 +15,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (<>{children}</>);
+  return (
+    <GoogleCaptchaWrapper>
+      {children}
+    </GoogleCaptchaWrapper>
+  );
 }
