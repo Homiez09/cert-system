@@ -1,7 +1,7 @@
 import { CarbonUserAvatarFilled } from "@/icons/Avatar";
 import { RiTimeLine } from "@/icons/Clock";
 import { MaterialSymbolsFolderOutline } from "@/icons/Folder";
-import { ICategory, RequestApiPropsById } from "@/interfaces/RequestApiProps";
+import { ICategory, RequestApiProps } from "@/interfaces/RequestApiProps";
 import { Metadata, ResolvingMetadata } from "next";
 import axios from "axios";
 import Image from "next/image";
@@ -16,7 +16,7 @@ export async function generateMetadata(
     { params, searchParams }: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/newById`, { id: params.id }).then((res) => res.data).catch((err) => err.response.data) as RequestApiPropsById;
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/newById`, { id: params.id }).then((res) => res.data).catch((err) => err.response.data) as RequestApiProps;
 
     if (res.status === 400) return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_URL!),
@@ -52,7 +52,7 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params }: { params: { id: number } }) {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/newById`, { id: params.id }).then((res) => res.data).catch((err) => err.response.data) as RequestApiPropsById;
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/newById`, { id: params.id }).then((res) => res.data).catch((err) => err.response.data) as RequestApiProps;
     if (res.status === 400) return (<Custom404 />);
     if (res.data.attributes.publishedAt === null) return (<Custom404 />);
     return (

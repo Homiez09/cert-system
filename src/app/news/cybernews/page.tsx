@@ -64,7 +64,7 @@ export default async function Page({ params, searchParams }: Props) {
                     );
                 })}
             </div>
-            {res.status === 200 ? <Pagination pageCount={res.meta.pagination.pageCount} /> : <Pagination pageCount={10} />}
+            {res.status === 200 ? <Pagination pageCount={res.meta!.pagination.pageCount} /> : <Pagination pageCount={10} />}
         </div >
     );
 }
