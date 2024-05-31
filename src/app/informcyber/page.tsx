@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { IForm } from '@/interfaces/IForm';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 const buddhistLocale: typeof en = {
     ...en,
@@ -21,7 +22,10 @@ const buddhistLocale: typeof en = {
 };
 
 export default function Page() {
+    const { executeRecaptcha } = useGoogleReCaptcha();
     const [isComplete, setIsComplete] = useState(false);
+    const [isErrorSubmit, setIsErrorSubmit] = useState(false);
+
     const [form, setForm] = useState<IForm>({
         agency: null,
         contact: null,
@@ -73,26 +77,47 @@ export default function Page() {
         handleSelectChange('needAssistance', value);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(form)
 
-        const formData = new FormData();
-        formData.append('data', JSON.stringify(form));
-        form.images?.map((image: any) => formData.append('files.image', image.originFileObj))
+        if (!executeRecaptcha) {
+            console.log("not available to execute recaptcha");
+            return;
+        }
 
-        toast.promise(
-            axios.post(`${process.env.NEXT_PUBLIC_URL}/api/informcyber`, formData).then(res => {
-                if (res.status === 200) {
-                    window.location.reload();
-                }
-            }),
-            {
+        const gRecaptchaToken = await executeRecaptcha('sumbit');
+
+        const response = await axios({
+            method: 'post',
+            url: "/api/recaptchaSubmit",
+            data: {
+                gRecaptchaToken,
+            },
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+            }
+        });
+
+        if (response?.data?.success) {
+            const formData = new FormData();
+            formData.append('data', JSON.stringify(form));
+            form.images?.map((image: any) => formData.append('files.image', image.originFileObj))
+
+            toast.promise(
+                axios.post(`${process.env.NEXT_PUBLIC_URL}/api/informcyber`, formData).then(res => {
+                    if (res.status === 200) {
+                        window.location.reload();
+                    }
+                }), {
                 loading: 'Saving...',
                 success: <b>Saved!</b>,
                 error: <b>Could not save.</b>,
             }
-        );
+            );
+        } else {
+            setIsErrorSubmit(true)
+        }
     };
 
     const handleSelectChange = (key: string, value: string | Date | null) => {
@@ -179,7 +204,7 @@ export default function Page() {
                                 ]}
                             />
                         </div>
-                        
+
                         {form.category === 'Other' && <div>
                             <p className="font-bold">ระบุหมวดหมู่*</p>
                             <Input placeholder='ระบุหมวดหมู่' name="other" onChange={handleChange} defaultValue={form.other || ""} required />
@@ -227,6 +252,7 @@ export default function Page() {
                         </div>
                     </div>
                 </div>
+                {isErrorSubmit && <p className="text-red-500 p-3">Failed to Verify recaptcha! You must be a robot!</p>}
                 <button className="rounded-lg px-5 py-2 bg-success text-white disabled:bg-[#9FECA1]" type="submit" disabled={!isComplete}>แจ้งเหตุ</button>
             </form>
         </div >
